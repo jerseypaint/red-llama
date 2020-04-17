@@ -1,0 +1,19 @@
+[
+    {
+    "hero":
+        {
+            "doing": [
+                "build", "test", "secure", "design", "host", "manage"
+            ],
+            "what":[
+                "websites", "web apps", "integrations", "ecommerce stores", "CRMs"
+            ],
+            "whom": [
+                "healthcare", "hospitality", "retail"
+            ]
+        },
+    "services": {
+        "description": "Sweet roll bonbon lollipop candy dessert tart dessert sugar plum chocolate. Caramels cookie jelly candy brownie. Muffin soufflé lollipop chocolate bar marshmallow marshmallow biscuit jelly carrot cake. Topping carrot cake jujubes danish ice cream apple pie jelly-o tart. Gingerbread jujubes cake tart pie chocolate bar tootsie roll danish halvah. Tart macaroon soufflé bonbon marshmallow wafer ice cream chocolate cake ice cream."
+    }
+    }
+]
