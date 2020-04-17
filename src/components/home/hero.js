@@ -8,10 +8,10 @@ import media from "../../styles/media"
 
 
 const HeroWrapper = styled.div`
-    height: 80vh;
     width: 100%;
     background-color: ${theme.brand};
-    
+    padding: 8rem 0;
+
     ${media.tablet`
         padding: 14rem 0;
     `}
@@ -26,6 +26,7 @@ const Title = styled.h2`
     color: #fff;
     font-size: 2.4rem;
     margin-bottom: 0;
+   
     ${media.tablet`
         font-size: 4.6rem;
     `}
@@ -33,7 +34,11 @@ const Title = styled.h2`
 const Span = styled.span`
     border-bottom: 3px #212121 solid;
     display: inline-block;
-    font-size: 4.6rem;
+    font-size: 1.8rem;
+
+    ${media.tablet`
+        font-size: 4.6rem;
+    `}
 `
 const Hero = props => {
     const doing = props.doing

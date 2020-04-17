@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 import Layout from "../components/common/layout"
 import SEO from "../components/common/seo"
@@ -10,8 +10,13 @@ import CTA from "../components/common/cta"
 import media, { sizes } from "../styles/media"
 
 const IndexPage = ({data}) => {
-
-  const isMobile = window.innerWidth <= sizes.mobile
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    if (window.innerWidth <= sizes.mobile) {
+     setIsMobile(true)
+    }
+  })
 
  return (
   <Layout>
