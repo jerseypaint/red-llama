@@ -4,8 +4,9 @@ path: "/projects/next-hous"
 date: "2020-04-010"
 title: "Next Hous"
 description: "Chocolate lollipop cheesecake pudding soufflé jujubes carrot cake. Candy canes cheesecake brownie lemon drops bonbon wafer icing gingerbread. Jelly-o lollipop topping liquorice chocolate bar chupa chups. Jelly pastry cheesecake jelly beans lollipop candy canes biscuit."
-featuredImage: "../images/dr-sofa.jpg"
+featuredImage: "../images/next-hous.png"
 tags: ["web design", "web app", "hosting and maintenance"]
+color: "#9cb200"
 ---
 Pie jelly brownie. Pudding marzipan chupa chups carrot cake. Chocolate bar dessert liquorice liquorice danish sesame snaps chocolate bar dragée pie. Cookie tootsie roll wafer sugar plum chocolate. Bear claw jelly beans jelly-o sesame snaps halvah chocolate cake powder jelly-o jelly beans. Toffee caramels marshmallow. Donut icing bear claw marzipan.
 

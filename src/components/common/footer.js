@@ -4,7 +4,6 @@ import { css } from "@emotion/core"
 import Img from "gatsby-image"
 import { Nav, NavLink, NavButton } from "./nav"
 import media from "../../styles/media"
-import theme from "../../styles/theme"
 import Section from "./section"
 import { gridContainer, GridContainer } from "./gridContainer"
 

@@ -3,10 +3,11 @@ import styled from "@emotion/styled"
 import { css } from "@emotion/core"
 import { flatten } from "lodash"
 
-import theme from "../../styles/theme"
+
 import Section from "../common/section"
 import { GridContainer } from "../common/gridContainer"
 import media from "../../styles/media"
+import theme from "../../styles/theme"
 import { StyledLink } from "../common/styledLink"
 
 const TagWrapper = styled.ul`
@@ -54,13 +55,13 @@ const ProjectItemWrapper = styled.div`
 
 const sticky = css`
     position: sticky;
-    background:linear-gradient(160deg, ${theme.brand}, ${theme.brand} 30%, transparent 10%, transparent) ;
     top: 100px;
     height: calc(100vh - 100px);
     padding: 3em 2em;
+    background:linear-gradient(160deg, ${theme.brand}, ${theme.brand} 30%, transparent 10%, transparent);
 `
 
-const ProjectItem = ({ updateProject, description, title, link, image, tags}) => {
+const ProjectItem = ({ updateProject, description, title, link, image, tags, color}) => {
     const [inView, setInView] = useState(false)
     const ref = useRef()
 
@@ -76,7 +77,8 @@ const ProjectItem = ({ updateProject, description, title, link, image, tags}) =>
                     description: description,
                     link: link,
                     image: image,
-                    tags: tags
+                    tags: tags,
+                    color: color
                  }         
             )
         } else {
@@ -87,7 +89,7 @@ const ProjectItem = ({ updateProject, description, title, link, image, tags}) =>
         {
           root: null,
           rootMargin: "0px",
-          threshold: 0.6
+          threshold: 0.4
         }
       )
       if (ref.current) {
@@ -109,7 +111,8 @@ export const ProjectsList = ({projects}) => {
         description: initialProject.description,
         link: initialProject.link,
         image: initialProject.featuredImage.childImageSharp.fluid.src,
-        tags: initialProject.tags
+        tags: initialProject.tags,
+        color: theme.brand
     })
 
     function updateProject(value) {
@@ -119,7 +122,10 @@ export const ProjectsList = ({projects}) => {
     return (
         <Section>
             <ProjectsWrapper currentProject={currentProject} projects={projects}>
-                <GridContainer css={sticky}>
+                <GridContainer css={css`
+                    ${sticky};
+                    background:linear-gradient(160deg, ${currentProject.color}, ${currentProject.color} 30%, transparent 10%, transparent);
+                    `}>
                     <ImageWrapper>
                         <img src={currentProject.image} />
                     </ImageWrapper>
@@ -143,6 +149,7 @@ export const ProjectsList = ({projects}) => {
                             link={project.node.frontmatter.path}
                             image={project.node.frontmatter.featuredImage.childImageSharp.fluid.src}
                             tags={project.node.frontmatter.tags}
+                            color={project.node.frontmatter.color}
                             updateProject={updateProject} />
                     ))}
             </ProjectsWrapper>

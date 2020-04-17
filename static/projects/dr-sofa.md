@@ -6,6 +6,7 @@ title: "Dr. Sofa"
 description: "Chocolate cake bonbon jelly danish caramels. Marzipan candy sweet. Liquorice toffee oat cake marzipan carrot cake. Pie tart marzipan toffee danish chocolate cake toffee chupa chups. Danish dessert icing sweet candy canes caramels. Gingerbread chupa chups muffin caramels lemon drops liquorice candy canes."
 featuredImage: "../images/dr-sofa.jpg"
 tags: ["web design", "web app", "process automation", "software integration"]
+color: "#bb171d"
 ---
 Pie jelly brownie. Pudding marzipan chupa chups carrot cake. Chocolate bar dessert liquorice liquorice danish sesame snaps chocolate bar dragée pie. Cookie tootsie roll wafer sugar plum chocolate. Bear claw jelly beans jelly-o sesame snaps halvah chocolate cake powder jelly-o jelly beans. Toffee caramels marshmallow. Donut icing bear claw marzipan.
 
