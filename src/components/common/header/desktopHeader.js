@@ -71,8 +71,8 @@ const scrolledStyle = css`
 
 const Toggle = styled(NavButton)`
     
-    --fa-primary-color: ${props => props.theme.textColor === `#FFFFFF` ? props.theme.textColor : props.theme.accentColor} ;
-    --fa-secondary-color: ${props => props.theme.textColor === `#FFFFFF` ? props.theme.accentColor : props.theme.textColor };
+    --fa-primary-color: ${props => props.theme.textColor === `#FFFFFF` ? `inherit` : props.theme.accentColor} ;
+    --fa-secondary-color: ${props => props.theme.textColor === `#FFFFFF` ? props.theme.accentColor : `inherit` };
     transition: all 600ms ease-in-out;
     
     button& {

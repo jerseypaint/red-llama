@@ -52,7 +52,13 @@ const Layout = props => {
 
   useEffect(() => {
     if (typeof window !== `undefined` && localStorage.getItem(`theme`) === null ) {
-      localStorage.setItem('theme', 'dark')
+      
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+        localStorage.setItem('theme', 'dark')
+      }
+      else {
+        localStorage.setItem('theme', 'light')
+      }
       setTheme(localStorage.getItem(`theme`))
     }
     else if (typeof window !== `undefined` && localStorage.getItem(`theme`) !== null) {
