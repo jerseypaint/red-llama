@@ -1,28 +1,32 @@
 import React from "react"
-import styled from "@emotion/styled"
-import { css } from "@emotion/core"
+import styled, { css } from "styled-components"
+
 import Img from "gatsby-image"
 import { Nav, NavLink, NavButton } from "../nav"
+import { Eclipse } from "../icons"
 import media from "../../../styles/media"
-import theme from "../../../styles/theme"
 
 const DesktopHeaderWrapper = styled.div`
-    width: 100%;
-    padding: 0.6rem;
     display: none;
 
     ${media.tablet`
         position: fixed;
         display: flex;
         justify-content: space-between;
+        width: 100%;
+        padding: 0.6rem;
         z-index: 99;
         transition: all 600ms ease-in-out;
-        
+
         a, button {
-            color: #fff;
-            font-size: 1.2rem;
+        font-size: 1.2rem;
+        color: ${props => props.currentPage === `index` && !props.isScrolled ? `#fff` : props.theme.textColor};
+
+        &:hover::after {
+            background-color: ${props => props.currentPage === `index` && !props.isScrolled ? `#fff` : props.theme.accentColor};
         }
-    `}    
+    }  
+    `}
 `
 
 const LogoWrapper = styled.div`
@@ -38,28 +42,66 @@ const LogoLink = styled(NavLink)`
     align-items: center;
     padding: 0;
     text-transform: lowercase;
-    
+    transition: all 600ms ease-in-out;
+
     .gatsby-image-wrapper {
         min-width: 80px;
+    }
+
+    &:hover {
+        color: ${props => props.theme.accentColor}
+    }
+
+    &:after {
+        display: none;
     }
 `
 
 const scrolledStyle = css`
-    background-color: ${theme.darkGrey};
+    background-color: ${props => props.theme.bgColor};
+
+    ${LogoLink} {
+        color: ${props => props.theme.accentColor};
+
+        &:hover {
+            color: ${props => props.theme.textColor};
+        }
+    } 
 `
 
-const DesktopHeader = props => (
-    <DesktopHeaderWrapper isScrolled={props.isScrolled} css={ props.isScrolled ? scrolledStyle : undefined} >
+const Toggle = styled(NavButton)`
+    
+    --fa-primary-color: ${props => props.theme.textColor === `#FFFFFF` ? props.theme.textColor : props.theme.accentColor} ;
+    --fa-secondary-color: ${props => props.theme.textColor === `#FFFFFF` ? props.theme.accentColor : props.theme.textColor };
+    transition: all 600ms ease-in-out;
+    
+    button& {
+     font-size: 1.6rem;
+    }
+
+    &:hover {
+        --fa-secondary-opacity: 1;
+        &::after {
+            display: none;
+        }
+    }
+`
+
+
+const DesktopHeader = ({toggleTheme, isScrolled, logo, siteTitle, menu, currentPage }) => (
+    <DesktopHeaderWrapper currentPage={currentPage} isScrolled={isScrolled} css={ isScrolled ? scrolledStyle : undefined} >
         <LogoWrapper>
-            <LogoLink to={`/`}><Img fluid={props.logo.childImageSharp.fluid} alt="red llama logo" /><span>{props.siteTitle}</span></LogoLink>
+            <LogoLink to={`/`}><Img fluid={logo.childImageSharp.fluid} alt="red llama logo" /><span>{siteTitle}</span></LogoLink>
         </LogoWrapper>
         <Nav>
-            {props.menu.map(menuLink => (
+            {menu.map(menuLink => (
                 <NavLink to={menuLink.link} >{menuLink.name}</NavLink>
             ))}
         </Nav>
         <SubNavWrapper>
-            <NavButton>Toggle</NavButton>
+            <Toggle onClick={toggleTheme}>
+                <Eclipse />
+            </Toggle>
             <NavLink>Login</NavLink>
         </SubNavWrapper>
     </DesktopHeaderWrapper>

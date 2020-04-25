@@ -10,5 +10,5 @@ const theme = {
     brand: "#C11432",
     yellow: "#FDD10A"
   }
-  
+
   export default theme

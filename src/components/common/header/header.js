@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { debounce } from "lodash"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 
 import DesktopHeader from "./desktopHeader"
 import MobileHeader from "./mobileHeader"
@@ -13,7 +13,7 @@ const HeaderWrapper = styled.div`
   }
 `
 
-const Header = () => {
+const Header = ({toggleTheme, currentPage}) => {
   
   const data = useStaticQuery(graphql`
   query headerQuery {
@@ -61,6 +61,8 @@ useEffect(() => {
       siteTitle={data.site.siteMetadata.title}
       menu={data.site.siteMetadata.menuLinks}
       isScrolled={isScrolled}
+      toggleTheme={toggleTheme}
+      currentPage={currentPage}
     />
     <MobileHeader 
       logo={data.image} 

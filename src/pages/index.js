@@ -7,9 +7,9 @@ import { WorkMobile } from "../components/home/workMobile"
 import Hero from "../components/home/hero"
 import Services from "../components/home/services"
 import CTA from "../components/common/cta"
-import media, { sizes } from "../styles/media"
+import { media, sizes } from "../styles/media"
 
-const IndexPage = ({data}) => {
+const IndexPage = ({data, theme}) => {
   const [isMobile, setIsMobile] = useState(false)
   
   useEffect(() => {
@@ -19,14 +19,14 @@ const IndexPage = ({data}) => {
   })
 
  return (
-  <Layout>
+  <Layout currentPage={`index`}>
     <SEO title="Home" />
     <Hero doing={data.homeJson.hero.doing} what={data.homeJson.hero.what} whom={data.homeJson.hero.whom} />
     <Services description={data.homeJson.services.description} services={data.servicesJson.services} />
-    {isMobile
-      ? <WorkMobile projects={data.allMarkdownRemark.edges} />
-      : <Work projects={data.allMarkdownRemark.edges} />
-    }
+      {isMobile
+        ? <WorkMobile theme={({theme}) => theme} projects={data.allMarkdownRemark.edges} />
+        : <Work theme={theme} projects={data.allMarkdownRemark.edges} />
+      }
     <CTA />
   </Layout>
 )

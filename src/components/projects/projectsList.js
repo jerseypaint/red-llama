@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
-import styled from "@emotion/styled"
-import { css } from "@emotion/core"
+import styled from "styled-components"
+import { css } from "styled-components"
 import { flatten } from "lodash"
 
 

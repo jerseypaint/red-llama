@@ -1,6 +1,6 @@
 import React from "react"
 import { StyledLink } from "../common/styledLink"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 import ScrollAnimation from 'react-animate-on-scroll'
 
 import media from "../../styles/media"

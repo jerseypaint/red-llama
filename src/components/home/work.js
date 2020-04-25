@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
-import styled from "@emotion/styled"
-import { css } from "@emotion/core"
+import styled, { css } from "styled-components"
 import Image from "gatsby-image"
-import media from "../../styles/media"
 import { StyledLink } from "../common/styledLink"
 
 
@@ -14,7 +12,6 @@ const GridContainer = styled.div`
 
 const Container = styled.div`
   transition: all 600ms linear;
-  color: #fff;
   padding: 0 2rem;
 `
 
@@ -29,10 +26,9 @@ const Child = styled.div`
 const GalleryWrapper = styled.div`
   position: relative;
   width: 50%;
-
   .gatsby-image-wrapper {
-    max-width: 500px;
-    margin: 30%;
+    max-width: ${props => (props.inView ? `100%` : `500px`)};
+    margin: ${props => (props.inView ? `0` : `30%`)};
     transition: all 600ms ease-in-out;
   }
 `
@@ -47,29 +43,18 @@ const Content = styled.div`
   margin: 0 auto;
 
   p {
-    height:0;
+    height: ${props => (props.inView ? `15rem` : `0`)};
     overflow: hidden;
     transition: all 600ms ease-in-out;
   }
 `
 
-const inViewStyles = css`
- .gatsby-image-wrapper {
-    max-width: 100%;
-    margin: 0;
-  }
-
-  p {
-    height: 15rem;
-  }
-`
-
 const activeStyles = css`
-  background-color: #121212;
+  background-color: ${props => props.theme.bg2Color};
 `
 
 
-const WorkItem = ({active = false, handleActive, image, title, description, link, linkText, fluid}) => {
+const WorkItem = ({handleActive, title, description, link, linkText, fluid}) => {
     const [inView, setInView] = useState(false)
     const ref = useRef()
     let prevRatio = 0.0
@@ -102,14 +87,13 @@ const WorkItem = ({active = false, handleActive, image, title, description, link
           <Child
             ref={ref}
             inView={inView}
-            css={inView ? inViewStyles : undefined }
-          >
+            >
             <GridContainer>
-                <GalleryWrapper>
+                <GalleryWrapper inView={inView} >
                   <Image fluid={fluid} />
                 </GalleryWrapper>
                 <ContentWrapper>
-                  <Content>
+                  <Content inView={inView}>
                     <h2>{title}</h2>
                     <p>{description}</p>
                     <StyledLink to={link}>{linkText}</StyledLink>
@@ -120,16 +104,17 @@ const WorkItem = ({active = false, handleActive, image, title, description, link
     )
 }
 
-export const Work = ({projects}) => {
+export const Work = (props) => {
     const [active, setActive] = useState(false)
 
     function handleActive(value) {
         setActive(value)
     }
+
     return (
-        <Container active={active} css={active ? activeStyles : undefined}>
-          {projects.map( project => (
-            <WorkItem active={active} handleActive={handleActive} fluid={project.node.frontmatter.featuredImage.childImageSharp.fluid} title={project.node.frontmatter.title} description={project.node.frontmatter.description} link={project.node.frontmatter.path} linkText={`view project`} />
+        <Container css={active ? activeStyles : undefined}>
+          {props.projects.map( project => (
+            <WorkItem handleActive={handleActive} fluid={project.node.frontmatter.featuredImage.childImageSharp.fluid} title={project.node.frontmatter.title} description={project.node.frontmatter.description} link={project.node.frontmatter.path} linkText={`view project`} />
           ))}
         </Container>
     )

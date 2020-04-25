@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 import theme from "../../styles/theme"
 
 import { ChevronCircleRight } from "../common/icons"
@@ -9,7 +9,7 @@ const LinkWrapper = styled(Link)`
     position: relative;
     display: inline-block;
     padding-right: 2px;
-    color:#fff;
+    color:${props => props.theme.textColor};
     font-size: 1.2rem;
     text-decoration: none;
     --fa-secondary-color: transparent;

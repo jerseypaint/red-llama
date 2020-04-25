@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 import { random, divide } from "lodash"
-import { css } from "@emotion/core"
+import { css } from "styled-components"
 
 import theme from "../../styles/theme"
 import media from "../../styles/media"

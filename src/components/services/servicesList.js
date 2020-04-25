@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 import theme from "../../styles/theme"
 import Section from "../common/section"
 import { GridContainer } from "../common/gridContainer"
@@ -77,6 +77,10 @@ const QW = styled.div`
 
 `
 
+const StyledSection = styled(Section)`
+    padding-bottom: 0;
+`
+
 
 const ServiceItem = ({description, updateTitle, title}) => {
     const [inView, setInView] = useState(false)
@@ -119,7 +123,7 @@ export const ServicesList = ({services}) => {
         setCurrentTitle(value)
     }
     return (
-        <Section>
+        <StyledSection>
             <QW currentTitle={currentTitle}>
                 <StickyMobile>
                     <h2>{currentTitle}</h2 >
@@ -137,6 +141,6 @@ export const ServicesList = ({services}) => {
                     </Content>
                 </GridContainer>
             </QW>
-        </Section>
+        </StyledSection>
     )
 }

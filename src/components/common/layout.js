@@ -5,18 +5,19 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { Global, css } from "@emotion/core"
-import { ThemeProvider } from 'emotion-theming'
+import { ThemeProvider } from 'styled-components'
 import "animate.css/animate.min.css"
 
-import theme from "../../styles/theme"
+import { GlobalStyle } from "../../styles/global"
+import darkTheme from "../../styles/darkTheme"
+import lightTheme from "../../styles/lightTheme"
 import Header from "./header/header" 
 import Footer from "./footer"
 
-const Layout = ({ children }) => {
+const Layout = props => {
   const data = useStaticQuery(graphql`
   query {
     site {
@@ -38,27 +39,34 @@ const Layout = ({ children }) => {
   }
 `)
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Global
-        styles={css`
-          body {
-            margin: 0;
-            padding: 0;
-            background-color: ${theme.darkGrey};
-            color: ${theme.white};
-          } 
+  const [theme, setTheme] = useState()
 
-          p {
-            font-size: 1.2rem;
-            line-height: 1.4;
-            letter-spacing: 0.8px;
-          }
-        `}
-      />
+  function toggleTheme() {
+    if (theme === `dark`) {
+      localStorage.setItem('theme', 'light')
+    } else {
+      localStorage.setItem('theme', 'dark')
+    }
+    setTheme(localStorage.getItem(`theme`))
+  }
+
+  useEffect(() => {
+    if (typeof window !== `undefined` && localStorage.getItem(`theme`) === null ) {
+      localStorage.setItem('theme', 'dark')
+      setTheme(localStorage.getItem(`theme`))
+    }
+    else if (typeof window !== `undefined` && localStorage.getItem(`theme`) !== null) {
+      setTheme(localStorage.getItem(`theme`))
+    }
+  })
+ 
+
+  return (
+    <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
+      <GlobalStyle />
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
-          <main>{children}</main>
+        <Header siteTitle={data.site.siteMetadata.title} theme={theme} toggleTheme={toggleTheme} currentPage={props.currentPage} />
+          <main>{props.children}</main>
         <Footer
           logo={data.image} 
           siteTitle={data.site.siteMetadata.title} 

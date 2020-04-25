@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import styled from "@emotion/styled"
-import { css } from "@emotion/core"
+import styled from "styled-components"
+import { css } from "styled-components"
 import Img from "gatsby-image"
 
 import { NavLink, NavButton } from "../nav"
