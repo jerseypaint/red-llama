@@ -20,6 +20,7 @@ export const query = graphql`
         services {
             title
             description
+            subservices
         }
     }
   }

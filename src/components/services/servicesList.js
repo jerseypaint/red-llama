@@ -33,13 +33,11 @@ const StickyDesktop = styled.div`
     ${media.tablet`
         display: block;
         position: sticky;
-        background-color: ${theme.brand};
         height: 100vh;
         top: 0;
 
         h2 {
-            position: absolute;
-            top: 0;
+            position:relative;
             padding: 8rem 0 0 4rem;
             font-size: 4rem;
             word-break: none;
@@ -51,7 +49,6 @@ const StickyDesktop = styled.div`
 const StickyMobile = styled.div`
     display: block;
     position: sticky;
-    background-color: ${theme.brand};
     top: 80px;
     margin: 0 -1rem;
     padding: 1rem;
@@ -81,8 +78,17 @@ const StyledSection = styled(Section)`
     padding-bottom: 0;
 `
 
+const Underline = styled.span`
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #fff;
+`
 
-const ServiceItem = ({description, updateTitle, title}) => {
+const Subservices = styled.ul`
+`
+
+const ServiceItem = ({description, updateTitle, title, subservices, updateSubs}) => {
     const [inView, setInView] = useState(false)
     const ref = useRef()
 
@@ -93,6 +99,7 @@ const ServiceItem = ({description, updateTitle, title}) => {
             if (entry.intersectionRatio > prevRatio){
             setInView(true)
             updateTitle(title)
+            updateSubs(subservices)
         } else {
             setInView(false)
         }
@@ -119,24 +126,44 @@ const ServiceItem = ({description, updateTitle, title}) => {
 
 export const ServicesList = ({services}) => {
     const [currentTitle, setCurrentTitle] = useState(`hello`)
+    const [currentSubs, setCurrentSubs] = useState([])
+
     function updateTitle(value) {
         setCurrentTitle(value)
     }
+
+    function updateSubs(arr){
+        setCurrentSubs(arr)
+    }
+    
     return (
         <StyledSection>
             <QW currentTitle={currentTitle}>
                 <StickyMobile>
                     <h2>{currentTitle}</h2 >
+                    <Underline></Underline>
                 </StickyMobile>
                 <GridContainer>
                     <TitleWrapper>
                         <StickyDesktop>
                             <h2>{currentTitle}</h2 >
+                            <Underline></Underline>
+                            <Subservices>
+                                {currentSubs && currentSubs.map(sub => (     
+                                    <li>{sub}</li>
+                                ))}
+                            </Subservices>
                         </StickyDesktop>
                     </TitleWrapper>
                     <Content>
                         {services.map(service => (        
-                            <ServiceItem title={service.title} description={service.description} updateTitle={updateTitle} />
+                            <ServiceItem 
+                            title={service.title} 
+                            description={service.description}
+                            subservices={service.subservices} 
+                            updateTitle={updateTitle} 
+                            updateSubs={updateSubs}
+                            />
                         ))}
                     </Content>
                 </GridContainer>

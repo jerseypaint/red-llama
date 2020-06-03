@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import styled, { css } from "styled-components"
 import Image from "gatsby-image"
 import { StyledLink } from "../common/styledLink"
-
+import ScrollAnimation from 'react-animate-on-scroll'
 
 const GridContainer = styled.div`
     display: flex;
@@ -11,12 +11,10 @@ const GridContainer = styled.div`
 `
 
 const Container = styled.div`
-  transition: all 600ms linear;
   padding: 0 2rem;
 `
 
 const Child = styled.div`
-  transition: all 600ms linear;
   position: relative;
   height: 100vh;
   padding: 0;
@@ -27,9 +25,7 @@ const GalleryWrapper = styled.div`
   position: relative;
   width: 50%;
   .gatsby-image-wrapper {
-    max-width: ${props => (props.inView ? `100%` : `500px`)};
-    margin: ${props => (props.inView ? `0` : `30%`)};
-    transition: all 600ms ease-in-out;
+    max-width: 100%;
   }
 `
 
@@ -41,12 +37,6 @@ const ContentWrapper = styled.div`
 const Content = styled.div`
   max-width: 500px;
   margin: 0 auto;
-
-  p {
-    height: ${props => (props.inView ? `15rem` : `0`)};
-    overflow: hidden;
-    transition: all 600ms ease-in-out;
-  }
 `
 
 const activeStyles = css`
@@ -54,50 +44,24 @@ const activeStyles = css`
 `
 
 
-const WorkItem = ({handleActive, title, description, link, linkText, fluid}) => {
-    const [inView, setInView] = useState(false)
-    const ref = useRef()
-    let prevRatio = 0.0
-
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.intersectionRatio > prevRatio){
-            setInView(true)
-            handleActive(true)
-           // ref.current.scrollIntoView({blcok: "start", behavior: 'smooth'})
-        } else {
-            setInView(false)
-            handleActive(false)
-        }
-        prevRatio = entry.intersectionRatio
-    },
-        {
-          root: null,
-          rootMargin: "0px",
-          threshold: 0.4
-        }
-      )
-      if (ref.current) {
-        observer.observe(ref.current)
-      }
-    }, [ref]);
-
+const WorkItem = ({title, description, link, linkText, fluid}) => {
     return (
           <Child
-            ref={ref}
-            inView={inView}
             >
             <GridContainer>
-                <GalleryWrapper inView={inView} >
-                  <Image fluid={fluid} />
+                <GalleryWrapper>
+                  <ScrollAnimation animateIn="zoomIn">
+                    <Image fluid={fluid} />
+                  </ScrollAnimation>
                 </GalleryWrapper>
                 <ContentWrapper>
-                  <Content inView={inView}>
-                    <h2>{title}</h2>
-                    <p>{description}</p>
-                    <StyledLink to={link}>{linkText}</StyledLink>
-                  </Content>
+                  <ScrollAnimation animateIn="slideInUp">
+                    <Content>
+                      <h2>{title}</h2>
+                      <p>{description}</p>
+                      <StyledLink to={link}>{linkText}</StyledLink>
+                    </Content>
+                    </ScrollAnimation>
                 </ContentWrapper>
             </GridContainer>
           </Child>
@@ -112,7 +76,7 @@ export const Work = (props) => {
     }
 
     return (
-        <Container css={active ? activeStyles : undefined}>
+        <Container>
           {props.projects.map( project => (
             <WorkItem handleActive={handleActive} fluid={project.node.frontmatter.featuredImage.childImageSharp.fluid} title={project.node.frontmatter.title} description={project.node.frontmatter.description} link={project.node.frontmatter.path} linkText={`view project`} />
           ))}
