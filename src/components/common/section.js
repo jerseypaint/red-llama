@@ -8,7 +8,7 @@ const Section = styled.section`
   position: relative;
 
   ${media.tablet`
-    padding: 4rem 0rem;
+    padding: 4rem 1rem;
   `}
 `
 

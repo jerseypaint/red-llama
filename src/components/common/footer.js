@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { css } from "styled-components"
 import Img from "gatsby-image"
 import { Nav, NavLink, NavButton } from "./nav"
+import { Eclipse } from "./icons"
 import media from "../../styles/media"
 import Section from "./section"
 import { gridContainer, GridContainer } from "./gridContainer"
@@ -36,6 +37,24 @@ const styleNav = css`
     `}
 `
 
+const Toggle = styled(NavButton)`
+    
+    --fa-primary-color: ${props => props.theme.textColor === `#FFFFFF` ? `inherit` : props.theme.accentColor} ;
+    --fa-secondary-color: ${props => props.theme.textColor === `#FFFFFF` ? props.theme.accentColor : `inherit` };
+    transition: all 600ms ease-in-out;
+    
+    button& {
+     font-size: 1.6rem;
+    }
+
+    &:hover {
+        --fa-secondary-opacity: 1;
+        &::after {
+            display: none;
+        }
+    }
+`
+
 const styleFooter = css`
     background-color: #000;
 `
@@ -52,6 +71,9 @@ const Footer = props => (
                         <NavLink to={menuLink.link} >{menuLink.name}</NavLink>
                     ))}
                 </Nav>
+                <Toggle onClick={props.onClickToggle}>
+                    <Eclipse />
+                </Toggle>
             </GridContainer>
         </Section>
     </footer>

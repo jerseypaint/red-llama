@@ -1,158 +1,158 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import styled from "styled-components"
-import { css } from "styled-components"
-import { flatten } from "lodash"
-
-
-import Section from "../common/section"
-import { GridContainer } from "../common/gridContainer"
-import media from "../../styles/media"
+import { Link } from "gatsby"
 import theme from "../../styles/theme"
+import media from "../../styles/media"
+import Section from "../common/section"
 import { StyledLink } from "../common/styledLink"
-
-const TagWrapper = styled.ul`
-    position: relative;
-    list-style: none;
-    text-transform: uppercase;
-    ${media.tablet`
-        padding-right: 2rem;
-    `}
-`
-
-const Content = styled.div`
-    grid-column: span 4;
-    grid-row: span 2;
-    align-self: end;
-    display: flex;
-
-    ${media.tablet`
-        grid-column: 7 / span 5 ;
-    `}
-`
-const ImageWrapper = styled.div`
-      grid-column: 1 / span 4 ;
-      grid-row: span 1;
-
-      img {
-        object-fit: cover;
-        height: 100%;
-        width: 100%;
-        margin-bottom: 0;
-      }
-
-      ${media.tablet`
-        grid-column: 1 / span 5 ;
-    `}
-`
+import { ChevronCircleRight } from "../common/icons"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 const ProjectsWrapper = styled.div`
+    .slick-slider {
+        .slick-slide {
+            position: relative;
+            padding-right: 2rem;
 
-`
+            img {
+                max-width: 100%;
+                margin: 0;
+                margin-left: auto;
+                object-fit: cover;
+                object-position: left;
+            }
 
-const ProjectItemWrapper = styled.div`
-    height: calc(100vh - 100px);
-`
+            &:nth-of-type(3n+1) {
+            img {
+                height: 44.75rem;
+                max-height: 100vh;
+                }
+            }
 
-const sticky = css`
-    position: sticky;
-    top: 100px;
-    height: calc(100vh - 100px);
-    padding: 3em 2em;
-    background:linear-gradient(160deg, ${theme.brand}, ${theme.brand} 30%, transparent 10%, transparent);
-`
+            &:nth-of-type(3n+2) {
+            img {
+                height: 26rem;
+                }
+            }
 
-const ProjectItem = ({ updateProject, description, title, link, image, tags, color}) => {
-    const [inView, setInView] = useState(false)
-    const ref = useRef()
-
-    useEffect(() => {
-      let prevRatio = 0.0
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.intersectionRatio > prevRatio){
-            setInView(true)
-            updateProject(
-                {
-                    title: title,
-                    description: description,
-                    link: link,
-                    image: image,
-                    tags: tags,
-                    color: color
-                 }         
-            )
-        } else {
-            setInView(false)
+            &:nth-of-type(3n+3) {
+            img {
+                height: 35.25rem;
+                }
+            }
         }
-        prevRatio = entry.intersectionRatio
-    },
-        {
-          root: null,
-          rootMargin: "0px",
-          threshold: 0.4
+    }
+`
+
+const ImageWrapper = styled.div`
+    position: relative;
+
+    img {
+        border: 6px solid ${props => props.color};
+    }
+
+    a {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        padding: 3px;
+        border-radius: 100%;
+        font-size: 5rem;
+        line-height: 1;
+        color: #fff;
+        background-color: ${props => props.color};
+        opacity: 0;
+        transition: all 1.5s cubic-bezier(.075,.82,.165,1);
+    }
+
+    &:hover {
+        a {
+            opacity: 1;
         }
-      )
-      if (ref.current) {
-        observer.observe(ref.current)
-      }
-    }, [ref]);
-
-    return (
-        <ProjectItemWrapper  ref={ref} title={title} description={description} link={link} tags={tags} />
-    )
-}
+    }
+`
 
 
-export const ProjectsList = ({projects}) => {
-    const initialProject = projects[0].node.frontmatter
+const InnerSlide = styled.div`
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr min-content;
+`
 
-    const [currentProject, setCurrentProject] = useState({
-        title: initialProject.title,
-        description: initialProject.description,
-        link: initialProject.link,
-        image: initialProject.featuredImage.childImageSharp.fluid.src,
-        tags: initialProject.tags,
-        color: theme.brand
-    })
+const TextWrapper = styled.div`
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    margin-left: .5rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    white-space: nowrap;
+    transform: rotate(180deg);
 
-    function updateProject(value) {
-        setCurrentProject(value)
+    h2 {
+        margin-bottom: 0;
+    }
+
+    p {
+        margin-bottom: 5px;
+    }
+
+    
+`
+export const ProjectsList = (props) => {
+    const [color, setColor] = useState(`transparent`)
+
+    const settings = {
+        dots: false,
+        arrows: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 2.4,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1280,
+                settings: {
+                    slidesToShow: 1.7
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                slidesToShow: 1.4
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                slidesToShow: 1.2
+                }
+            }
+          ]
     }
 
     return (
-        <Section>
-            <ProjectsWrapper currentProject={currentProject} projects={projects}>
-                <GridContainer css={css`
-                    ${sticky};
-                    background:linear-gradient(160deg, ${currentProject.color}, ${currentProject.color} 30%, transparent 10%, transparent);
-                    `}>
-                    <ImageWrapper>
-                        <img src={currentProject.image} />
-                    </ImageWrapper>
-                    <Content>
-                        <TagWrapper>
-                                {currentProject.tags.map(tag => (
-                                    <li>{tag}</li>
-                                ))}
-                        </TagWrapper>
-                        <div>
-                            <h2>{currentProject.title}</h2 >
-                            <p>{currentProject.description}</p>
-                            <StyledLink to={currentProject.link}>Learn More</StyledLink>
-                        </div>
-                    </Content>
-                </GridContainer>
-                {projects.map(project => (        
-                        <ProjectItem
-                            title={project.node.frontmatter.title}
-                            description={project.node.frontmatter.description}
-                            link={project.node.frontmatter.path}
-                            image={project.node.frontmatter.featuredImage.childImageSharp.fluid.src}
-                            tags={project.node.frontmatter.tags}
-                            color={project.node.frontmatter.color}
-                            updateProject={updateProject} />
-                    ))}
-            </ProjectsWrapper>
-        </Section>
+        <ProjectsWrapper >
+            <Slider {...settings}>
+                {props.projects.map(project => (
+                    <div>
+                    <InnerSlide>
+                        <ImageWrapper  color={project.node.frontmatter.color}>
+                            <img src={project.node.frontmatter.featuredImage.childImageSharp.fluid.src} />
+                            <Link to={project.node.frontmatter.path}><ChevronCircleRight /></Link>
+                        </ImageWrapper>
+                        <TextWrapper>
+                            <p>{project.node.frontmatter.tags[0]}-</p>
+                            <h2>{project.node.frontmatter.title}</h2>
+                        </TextWrapper>
+                        
+                    </InnerSlide>
+                    </div>
+                ))}
+            </Slider>
+        </ProjectsWrapper>
     )
 }
+

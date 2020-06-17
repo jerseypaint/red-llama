@@ -20,6 +20,13 @@ export const query = graphql`
         services {
             title
             description
+            image {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
         }
     }
   }

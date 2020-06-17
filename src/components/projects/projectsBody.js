@@ -20,7 +20,7 @@ const Article = styled.article`
     grid-column: 1 / span 4;
 
     ${media.tablet`
-    grid-column: 5 / span 4;
+    grid-column: 5 / span 6;
     `}
 `
 

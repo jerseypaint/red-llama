@@ -16,7 +16,7 @@ const BigLinkWrapper = styled.div`
 const CTA = props => (
     <Section>
         <BigLinkWrapper>
-            <ScrollAnimation animateIn="fadeInUp">
+            <ScrollAnimation animateIn="fadeInUp" animateOnce="true">
                 <StyledLink>Let's Talk</StyledLink>
             </ScrollAnimation>
         </BigLinkWrapper>       

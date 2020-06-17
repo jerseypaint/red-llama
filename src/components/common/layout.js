@@ -77,6 +77,7 @@ const Layout = props => {
           logo={data.image} 
           siteTitle={data.site.siteMetadata.title} 
           menu={data.site.siteMetadata.menuLinks} 
+          onClickToggle={toggleTheme}
         />
       </>
     </ThemeProvider>
