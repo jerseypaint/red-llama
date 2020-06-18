@@ -5,13 +5,35 @@ import { css } from "styled-components"
 import Section from "../common/section"
 import media from "../../styles/media"
 import { GridContainer } from "../common/gridContainer"
-
+import { CheckCircleListItem } from "../common/icons"
 
 const Sidebar = styled.div`
     grid-column: 1 / span 4;
-    
+
+    ul {
+        
+        .animated {
+            font-weight: bold;
+            &:last-of-type {
+                border: none;
+            }
+        }
+        li {
+            margin: 1rem 0;
+            padding: 1rem 2rem;
+            font-size: 1.4rem;
+            line-height: 1;
+            font-weight: bold;
+        }
+    }
+
     ${media.tablet`
-    grid-column: 2 / span 3;
+        grid-column: 1 / span 12;
+    `}
+
+    ${media.desktop`
+        grid-column: 2 / span 3;
+        border-right: 6px solid black;
     `}
 `
 const Article = styled.article`
@@ -20,7 +42,13 @@ const Article = styled.article`
     grid-column: 1 / span 4;
 
     ${media.tablet`
-    grid-column: 5 / span 6;
+        grid-column: 1 / span 12;
+
+    `}
+
+    ${media.desktop`
+        grid-column: 5 / span 6;
+        margin-right: auto;
     `}
 `
 
@@ -29,9 +57,9 @@ export const ProjectsBody = props => {
         <Section>
             <GridContainer>
                 <Sidebar>
-                    <ul>
+                    <ul className="fa-ul">
                     {props.tags.map(tag => (          
-                        <li>{tag}</li>
+                        <li><CheckCircleListItem />{tag}</li>
                     ))}
                     </ul>
                 </Sidebar>

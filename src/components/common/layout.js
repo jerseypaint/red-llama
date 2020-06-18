@@ -41,43 +41,16 @@ const Layout = props => {
 
   const [theme, setTheme] = useState()
 
-  function toggleTheme() {
-    if (theme === `dark`) {
-      localStorage.setItem('theme', 'light')
-    } else {
-      localStorage.setItem('theme', 'dark')
-    }
-    setTheme(localStorage.getItem(`theme`))
-  }
-
-  useEffect(() => {
-    if (typeof window !== `undefined` && localStorage.getItem(`theme`) === null ) {
-      
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
-        localStorage.setItem('theme', 'dark')
-      }
-      else {
-        localStorage.setItem('theme', 'light')
-      }
-      setTheme(localStorage.getItem(`theme`))
-    }
-    else if (typeof window !== `undefined` && localStorage.getItem(`theme`) !== null) {
-      setTheme(localStorage.getItem(`theme`))
-    }
-  })
- 
-
   return (
-    <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
+    <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
       <>
-        <Header siteTitle={data.site.siteMetadata.title} theme={theme} toggleTheme={toggleTheme} currentPage={props.currentPage} />
+        <Header siteTitle={data.site.siteMetadata.title} theme={theme} currentPage={props.currentPage} />
           <main>{props.children}</main>
         <Footer
           logo={data.image} 
           siteTitle={data.site.siteMetadata.title} 
-          menu={data.site.siteMetadata.menuLinks} 
-          onClickToggle={toggleTheme}
+          menu={data.site.siteMetadata.menuLinks}
         />
       </>
     </ThemeProvider>

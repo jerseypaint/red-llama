@@ -7,7 +7,7 @@ import media from "../../styles/media"
 
 const TitleWrapper = styled.div`
     margin: 0 auto;
-    padding: calc(80px + 3rem) 0;
+    padding: calc(80px + 3rem) 0 0;
     max-width: 800px;
     height: 100%;
     
@@ -16,7 +16,7 @@ const TitleWrapper = styled.div`
     }
 
     ${media.tablet`
-        padding: 8rem 0;
+        padding: 4rem 0 0;
         h1 {
             font-size: 5rem;
         }
@@ -37,9 +37,12 @@ export const PageHeader = props => {
             justify-content: flex-end;
             width: 100%;
         }
-`
+    `
+    const bgColor = css`
+        background-color: ${props.bgColor};
+    `
     return (
-        <Section css={props.bgImage ? bgImageStyle : undefined}>
+        <Section css={props.bgColor ? bgColor : undefined}>
                 <TitleWrapper>
                     <h1>{props.title}</h1>
                 </TitleWrapper>

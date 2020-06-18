@@ -1,5 +1,5 @@
 import React from "react"
-import { StyledLink } from "../common/styledLink"
+import { StyledLink } from "../common/buttons"
 import styled from "styled-components"
 import ScrollAnimation from 'react-animate-on-scroll'
 

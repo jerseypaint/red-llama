@@ -10,8 +10,8 @@ import media from "../../styles/media"
 
 const HeroWrapper = styled.div`
     width: 100%;
-    background-color: ${theme.brand};
     padding: 8rem 0;
+    background-color: #FF9B42;
 
     ${media.tablet`
         padding: 14rem 0;
@@ -41,7 +41,6 @@ const Content = styled.div`
 `
 
 const Title = styled.h2`
-    color: #fff;
     font-size: 2.4rem;
     margin-bottom: 0;
    
@@ -51,9 +50,9 @@ const Title = styled.h2`
 `
 
 const Span = styled.span`
-    border-bottom: 3px #212121 solid;
+    border-bottom: 6px #212121 solid;
     display: inline-block;
-    font-size: 1.8rem;
+    font-size: 2.4rem;
 
     ${media.tablet`
         font-size: 4.6rem;
@@ -119,7 +118,7 @@ const Hero = props => {
                 classNames='fade'
                 >
                     <Span css={verbWidth}>{verb}</Span></CSSTransition></Title>
-                <Title><Span css={productWidth}>{product}</Span> for </Title>
+                <Title>web applications for</Title>
                 <Title><Span css={verticalWidth}>{vertical}</Span> companies.</Title>
             </Content>
     </HeroWrapper>

@@ -4,13 +4,15 @@ import { Link } from "gatsby"
 import theme from "../../styles/theme"
 import media from "../../styles/media"
 import Section from "../common/section"
-import { StyledLink } from "../common/styledLink"
+import { StyledLink } from "../common/buttons"
 import { ChevronCircleRight } from "../common/icons"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 const ProjectsWrapper = styled.div`
+    cursor: grab;
+
     .slick-slider {
         .slick-slide {
             position: relative;
@@ -24,24 +26,26 @@ const ProjectsWrapper = styled.div`
                 object-position: left;
             }
 
-            &:nth-of-type(3n+1) {
-            img {
-                height: 44.75rem;
-                max-height: 100vh;
+            ${media.desktop`
+                &:nth-of-type(3n+1) {
+                img {
+                    height: 44.75rem;
+                    max-height: 100vh;
+                    }
                 }
-            }
 
-            &:nth-of-type(3n+2) {
-            img {
-                height: 26rem;
+                &:nth-of-type(3n+2) {
+                img {
+                    height: 26rem;
+                    }
                 }
-            }
 
-            &:nth-of-type(3n+3) {
-            img {
-                height: 35.25rem;
+                &:nth-of-type(3n+3) {
+                img {
+                    height: 35.25rem;
+                    }
                 }
-            }
+            `}
         }
     }
 `
@@ -57,14 +61,20 @@ const ImageWrapper = styled.div`
         position: absolute;
         top: 18px;
         right: 18px;
-        padding: 3px;
         border-radius: 100%;
         font-size: 5rem;
-        line-height: 1;
-        color: #fff;
-        background-color: ${props => props.color};
-        opacity: 0;
+        line-height: .9;
+        background: #fff;
+        color: #000;
         transition: all 1.5s cubic-bezier(.075,.82,.165,1);
+
+        svg {
+            margin: -2px;
+        }
+
+        ${media.desktop`
+            opacity: 0;
+        `}
     }
 
     &:hover {
@@ -77,19 +87,19 @@ const ImageWrapper = styled.div`
 
 const InnerSlide = styled.div`
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr min-content;
+
+    ${media.desktop`
+        display: grid;
+        grid-template-columns: 1fr min-content;
+    `}
 `
 
 const TextWrapper = styled.div`
-    display: inline-flex;
+    display: flex;
+    flex-flow: column-reverse;
     align-self: flex-start;
-    align-items: center;
     margin-left: .5rem;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    white-space: nowrap;
-    transform: rotate(180deg);
+
 
     h2 {
         margin-bottom: 0;
@@ -99,7 +109,14 @@ const TextWrapper = styled.div`
         margin-bottom: 5px;
     }
 
-    
+    ${media.desktop`
+        flex-flow: row nowrap;
+        align-items: center;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        white-space: nowrap;
+        transform: rotate(180deg);
+    `}
 `
 export const ProjectsList = (props) => {
     const [color, setColor] = useState(`transparent`)
@@ -127,7 +144,7 @@ export const ProjectsList = (props) => {
             {
                 breakpoint: 480,
                 settings: {
-                slidesToShow: 1.2
+                slidesToShow: 1.1
                 }
             }
           ]
@@ -139,7 +156,7 @@ export const ProjectsList = (props) => {
                 {props.projects.map(project => (
                     <div>
                     <InnerSlide>
-                        <ImageWrapper  color={project.node.frontmatter.color}>
+                        <ImageWrapper  color={`#000`}>
                             <img src={project.node.frontmatter.featuredImage.childImageSharp.fluid.src} />
                             <Link to={project.node.frontmatter.path}><ChevronCircleRight /></Link>
                         </ImageWrapper>

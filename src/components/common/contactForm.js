@@ -4,35 +4,38 @@ import { css } from "styled-components"
 
 import Section from "../common/section"
 import media from "../../styles/media"
-import { StyledButton } from "../common/styledLink"
+import { StyledButton } from "./buttons"
 
 const Form = styled.form`
-    background: #333;
+    background-color: #FFFAE3;
+    border: 6px solid black;
     padding: 3rem 2rem;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 2rem;
 
     p {
+      width: 100%;
+      padding: 0 1rem;
+
+      ${media.tablet`
         width: 50%;
-        padding: 0 1rem;
+        
 
         &:last-of-type {
             width: 100%;
         }
+    `}
     }
 
     input, select, textarea {
         display: block;
         background-color: transparent;
         border: none;
-        border-bottom: 2px solid red;
-        color: #fff;
+        border-bottom: 2px solid black;
         padding: 15px;
         width: 100%;
 
         option {
-            background: #333;
         }
     }
 

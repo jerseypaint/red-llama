@@ -13,7 +13,7 @@ const ProjectTemplate = ({data}) => {
     return (
   <Layout>
     <SEO title={frontmatter.title} />
-        <PageHeader title={frontmatter.title} bgImage={frontmatter.featuredImage.childImageSharp.original.src} />
+        <PageHeader bgColor={frontmatter.color} title={frontmatter.title} />
         <ProjectsBody html={html} tags={frontmatter.tags} />
   </Layout>
 )}
@@ -32,6 +32,7 @@ export const query = graphql`
                 }
             }
         }
+        color
       }
       html
     }

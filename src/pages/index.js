@@ -47,7 +47,7 @@ export const query = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}, limit: 4, filter: {frontmatter: {type: {eq: "project"}}}) {
+    allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}, limit: 3, filter: {frontmatter: {type: {eq: "project"}}}) {
       edges {
         node {
           frontmatter {

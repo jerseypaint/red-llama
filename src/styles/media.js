@@ -1,6 +1,7 @@
 import { css } from "styled-components"
 
 export const sizes = {
+  widescreen: 1440,
   desktop: 1024,
   tablet: 768,
   mobile: 512,

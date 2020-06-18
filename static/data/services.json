@@ -2,29 +2,34 @@
     {
         "services": [
             {
-                "title": "web development",
+                "title": "Web development",
                 "description": "Pie jelly brownie. Pudding marzipan chupa chups carrot cake. Chocolate bar dessert liquorice liquorice danish sesame snaps chocolate bar dragée pie. Cookie tootsie roll wafer sugar plum chocolate. Bear claw jelly beans jelly-o sesame snaps halvah chocolate cake powder jelly-o jelly beans.",
-                "image": "../images/humaaans.png"
+                "image": "../images/humaaans.png",
+                "subServices" : ["Informational", "E-commerce", "WordPress", "Shopify", "Gatsby"]
             },
             {
-                "title": "web applications",
+                "title": "Web applications",
                 "description": "Toffee caramels marshmallow. Donut icing bear claw marzipan. Chocolate pie jelly danish. Cookie liquorice chocolate. Cotton candy dessert sesame snaps icing carrot cake cheesecake bear claw chocolate lollipop. Gummi bears jelly beans powder. Marshmallow pastry gummies sweet roll cupcake fruitcake. Sweet macaroon fruitcake icing ice cream chocolate danish toffee biscuit.",
-                "image": "../images/humaaans.png"
+                "image": "../images/humaaans.png",
+                "subServices" : ["Vue", "React", "Custom CRMs", "Custom APIs"]
             },
             {
-                "title": "cyber secruity",
+                "title": "Cyber secruity",
                 "description": "Tootsie roll lollipop fruitcake candy canes caramels. Chocolate brownie candy canes dessert. Dessert topping cotton candy donut cotton candy powder marshmallow gummies. Sugar plum donut jelly-o brownie dragée bonbon muffin macaroon. Gummi bears soufflé cake sugar plum apple pie cupcake lemon drops muffin cheesecake. Tootsie roll pudding lollipop sweet roll bear claw.",
-                "image": "../images/humaaans.png"
+                "image": "../images/humaaans.png",
+                "subServices" : ["Informational", "E-commerce", "WordPress", "Shopify"]
             },
             {
-                "title": "app integrations",
+                "title": "App integrations",
                 "description": "Chocolate pudding fruitcake halvah jelly cotton candy candy dragée. Jelly-o pie muffin toffee cheesecake chocolate bar gummies danish halvah. Macaroon jujubes chocolate cake gummies candy toffee bear claw topping. Marshmallow chupa chups dessert tootsie roll tiramisu. Jelly jelly cake cheesecake powder cookie. Croissant bonbon tart. Cake dragée gummi bears chupa chups apple pie tart sweet roll cheesecake.",
-                "image": "../images/humaaans.png"
+                "image": "../images/humaaans.png",
+                "subServices" : ["API integration", "CRM integration", "Payment processing", "Custom plugins"]
             },
             {
-                "title": "hosting and maintenance",
+                "title": "Hosting and maintenance",
                 "description": "Soufflé donut danish ice cream pie tiramisu halvah brownie. Lollipop soufflé cotton candy ice cream. Chocolate bar gummi bears gummies tiramisu fruitcake sweet roll danish. Pudding lollipop sugar plum. Jelly beans chupa chups danish marzipan. Jelly cotton candy apple pie jelly-o. Icing chocolate pudding chocolate cake macaroon dragée cotton candy sugar plum marzipan. ",
-                "image": "../images/humaaans.png"
+                "image": "../images/humaaans.png",
+                "subServices" : ["CDN and edge caching", "Domain and DNS management", "Security and compliance", "Analytics", "Automated back-ups"]
             }
         ]
     }

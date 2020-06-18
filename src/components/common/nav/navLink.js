@@ -8,24 +8,31 @@ export const NavLink = styled(Link)`
   color: #fff;
   display: flex;
   text-decoration: none;
-  text-transform: capitalize;
-
-  &:after {
-    content:'';
-    position: absolute;
-    bottom:0;
-    left:0;
-    width: 0%;
-    height: 3px;
-    background-color: ${theme.brand};
-    transition: all 600ms ease-in-out;
-  }
-
-  &:hover {
-    &:after {
-        width: 100%;
+  transition: all 1.5s cubic-bezier(.075,.82,.165,1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  
+    &:hover {
+        transform: scale(1.05);
+        &:after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
     }
-  }
+
+    &:after {
+        display: block;
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background-color: #000;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 600ms;
+    }
 
   ${media.tablet`
     margin: 0 1rem;

@@ -3,24 +3,21 @@ import styled from "styled-components"
 import ScrollAnimation from 'react-animate-on-scroll'
 
 import Section from "./section"
-import {StyledLink} from "../common/styledLink"
+import { ContactForm } from "../common/contactForm"
 
-
-const BigLinkWrapper = styled.div`
-     a {
-        font-size: 4rem;
-        margin-left: 10%;
-    }
+const ContactSection = styled(Section)`
+    background-color: #EDDEA4;
 `
 
 const CTA = props => (
-    <Section>
-        <BigLinkWrapper>
+    <ContactSection>
             <ScrollAnimation animateIn="fadeInUp" animateOnce="true">
-                <StyledLink>Let's Talk</StyledLink>
+                <h2>Let's Talk</h2>
             </ScrollAnimation>
-        </BigLinkWrapper>       
-    </Section>
+            <ScrollAnimation animateIn="fadeInUp" animateOnce="true">
+            <ContactForm />
+            </ScrollAnimation>
+    </ContactSection>
 )
 
 export default CTA
