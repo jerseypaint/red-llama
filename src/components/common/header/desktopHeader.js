@@ -10,7 +10,9 @@ const DesktopHeaderWrapper = styled.div`
     display: none;
 
     ${media.tablet`
-        position: fixed;
+        position: absolute;
+        top:0;
+        left: 0;
         display: flex;
         justify-content: space-between;
         width: 100%;

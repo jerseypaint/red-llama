@@ -1,158 +1,76 @@
 import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 import { css } from "styled-components"
-import { flatten } from "lodash"
+import Image from "gatsby-image"
 
+import LocomotiveScroll from 'locomotive-scroll'
 
-import Section from "../common/section"
-import { GridContainer } from "../common/gridContainer"
-import media from "../../styles/media"
-import theme from "../../styles/theme"
-import { StyledLink } from "../common/styledLink"
-
-const TagWrapper = styled.ul`
-    position: relative;
-    list-style: none;
-    text-transform: uppercase;
-    ${media.tablet`
-        padding-right: 2rem;
-    `}
+const ProjectContainer = styled.div`
+    max-width: 1200px;
+    margin: 0 auto;
 `
-
-const Content = styled.div`
-    grid-column: span 4;
-    grid-row: span 2;
-    align-self: end;
+const SingleProject = styled.div`
     display: flex;
+    margin: 300px 0;
 
-    ${media.tablet`
-        grid-column: 7 / span 5 ;
-    `}
+    .gatsby-image-wrapper {
+        min-width: 500px;
+    }
 `
-const ImageWrapper = styled.div`
-      grid-column: 1 / span 4 ;
-      grid-row: span 1;
 
-      img {
-        object-fit: cover;
-        height: 100%;
-        width: 100%;
-        margin-bottom: 0;
+const Projects = (props) => {
+    const scrollRef = useRef(null)
+    const scroll = {
+        // Locomotive Scroll
+        // https://github.com/locomotivemtl/locomotive-scroll#instance-options
+        container: "#___gatsby",
+        options: {
+          smooth: true,
+          smoothMobile: false,
+          getDirection: true,
+          touchMultiplier: 2.5,
+          lerp: 0.15,
+        },
       }
-
-      ${media.tablet`
-        grid-column: 1 / span 5 ;
-    `}
-`
-
-const ProjectsWrapper = styled.div`
-
-`
-
-const ProjectItemWrapper = styled.div`
-    height: calc(100vh - 100px);
-`
-
-const sticky = css`
-    position: sticky;
-    top: 100px;
-    height: calc(100vh - 100px);
-    padding: 3em 2em;
-    background:linear-gradient(160deg, ${theme.brand}, ${theme.brand} 30%, transparent 10%, transparent);
-`
-
-const ProjectItem = ({ updateProject, description, title, link, image, tags, color}) => {
-    const [inView, setInView] = useState(false)
-    const ref = useRef()
 
     useEffect(() => {
-      let prevRatio = 0.0
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.intersectionRatio > prevRatio){
-            setInView(true)
-            updateProject(
-                {
-                    title: title,
-                    description: description,
-                    link: link,
-                    image: image,
-                    tags: tags,
-                    color: color
-                 }         
-            )
-        } else {
-            setInView(false)
+        let locomotiveScroll
+        locomotiveScroll = new LocomotiveScroll({
+            el: document.querySelector(scroll.container),
+            ...scroll.options,
+        })
+        locomotiveScroll.update()
+    
+        // Exposing to the global scope for ease of use.
+        window.scroll = locomotiveScroll
+    
+        locomotiveScroll.on("scroll", func => {
+            // Update `data-direction` with scroll direction.
+            document.documentElement.setAttribute("data-direction", func.direction)
+        })
+    
+        return () => {
+            if (locomotiveScroll) locomotiveScroll.destroy()
         }
-        prevRatio = entry.intersectionRatio
-    },
-        {
-          root: null,
-          rootMargin: "0px",
-          threshold: 0.4
-        }
-      )
-      if (ref.current) {
-        observer.observe(ref.current)
-      }
-    }, [ref]);
+        })
 
     return (
-        <ProjectItemWrapper  ref={ref} title={title} description={description} link={link} tags={tags} />
+        <div>
+        <ProjectContainer>
+            {props.projects.map(project => (
+                <SingleProject data-scroll-section>
+                    <div data-scroll data-scroll-speed="-2">
+                        <h3>{project.node.frontmatter.title}</h3>
+                        <p>{project.node.frontmatter.description}</p>
+                    </div>
+                    <div data-scroll data-scroll-speed="4" data-scroll-position="top">
+                        <Image fluid={project.node.frontmatter.featuredImage.childImageSharp.fluid} />
+                    </div>
+                </SingleProject>
+            ))}
+        </ProjectContainer>
+        </div>
     )
 }
 
-
-export const ProjectsList = ({projects}) => {
-    const initialProject = projects[0].node.frontmatter
-
-    const [currentProject, setCurrentProject] = useState({
-        title: initialProject.title,
-        description: initialProject.description,
-        link: initialProject.link,
-        image: initialProject.featuredImage.childImageSharp.fluid.src,
-        tags: initialProject.tags,
-        color: theme.brand
-    })
-
-    function updateProject(value) {
-        setCurrentProject(value)
-    }
-
-    return (
-        <Section>
-            <ProjectsWrapper currentProject={currentProject} projects={projects}>
-                <GridContainer css={css`
-                    ${sticky};
-                    background:linear-gradient(160deg, ${currentProject.color}, ${currentProject.color} 30%, transparent 10%, transparent);
-                    `}>
-                    <ImageWrapper>
-                        <img src={currentProject.image} />
-                    </ImageWrapper>
-                    <Content>
-                        <TagWrapper>
-                                {currentProject.tags.map(tag => (
-                                    <li>{tag}</li>
-                                ))}
-                        </TagWrapper>
-                        <div>
-                            <h2>{currentProject.title}</h2 >
-                            <p>{currentProject.description}</p>
-                            <StyledLink to={currentProject.link}>Learn More</StyledLink>
-                        </div>
-                    </Content>
-                </GridContainer>
-                {projects.map(project => (        
-                        <ProjectItem
-                            title={project.node.frontmatter.title}
-                            description={project.node.frontmatter.description}
-                            link={project.node.frontmatter.path}
-                            image={project.node.frontmatter.featuredImage.childImageSharp.fluid.src}
-                            tags={project.node.frontmatter.tags}
-                            color={project.node.frontmatter.color}
-                            updateProject={updateProject} />
-                    ))}
-            </ProjectsWrapper>
-        </Section>
-    )
-}
+export default Projects

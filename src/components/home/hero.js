@@ -2,103 +2,105 @@ import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 import { random, divide } from "lodash"
 import { css } from "styled-components"
+import { CSSTransition } from 'react-transition-group'
 
 import theme from "../../styles/theme"
 import media from "../../styles/media"
 
 
-const HeroWrapper = styled.div`
+const Hero = styled.div`
+  position: relative;
+
+  .my-node-appear {
+    display: block;
+    height: 100vh;
     width: 100%;
-    background-color: ${theme.brand};
-    padding: 8rem 0;
+    font-size: 40px;
+    overflow: hidden;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    right: 0;
+    background: red;
+    color: white;
+    z-index: 3;
+  }
 
-    ${media.tablet`
-        padding: 14rem 0;
-    `}
+  .my-node-appear-active, .my-node-appear-done {
+    height: 0;
+    transition: height 1s cubic-bezier(.215,.61,.355,1);
+    transition-delay: 1200ms;
+  }
+
+  .my-node-appear-done {
+    h1 {
+      display: none;
+    }
+  }
+
+  .header-appear {
+    opacity: 0;
+    transform-origin: center top;
+    transform-style: preserve-3d;
+    transform: translateY(100%) rotateX(-80deg);
+    transition: opacity 0s cubic-bezier(.215,.61,.355,1),transform 0s cubic-bezier(.215,.61,.355,1);
+  }
+
+  .header-appear-active, .header-appear-done {
+    transform: none;
+    opacity: 1;
+    transition-duration: .8s;
+  }
+
+  .under {
+    color: black;
+    background: white;
+    z-index: 1;
+    display: block;
+    height: 400px;
+    width: 100%;
+    font-size: 40px;
+    overflow: hidden;
+    text-align: left;
+    top: 0;
+    right: 0;
+  }
+
+  h1 {
+    margin-top: 150px;
+    font-size: 7rem;
+  }
 `
 
-const Content = styled.div`
-    margin: 0 auto;
-    text-align: center;
+const HeroContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
 `
 
-const Title = styled.h2`
-    color: #fff;
-    font-size: 2.4rem;
-    margin-bottom: 0;
-   
-    ${media.tablet`
-        font-size: 4.6rem;
-    `}
+const Test = styled.div`
+  height: 800px;
+  width: 100%;
+  background: blue;
 `
-const Span = styled.span`
-    border-bottom: 3px #212121 solid;
-    display: inline-block;
-    font-size: 1.8rem;
 
-    ${media.tablet`
-        font-size: 4.6rem;
-    `}
-`
-const Hero = props => {
-    const doing = props.doing
-    const what = props.what
-    const whom = props.whom
-
-
-    const longestVerb = Math.max(...(doing.map(el => el.length)))
-    const longestProduct = Math.max(...(what.map(el => el.length)))
-    const longestVertical = Math.max(...(whom.map(el => el.length)))
-
-    const [verb, setVerb] = useState(doing[0])
-    const [product, setProduct] = useState(what[0])
-    const [vertical, setVertical] = useState(whom[0])
-
-    const verbWidth = css`
-        min-width: ${divide(longestVerb, 1.8)}em;
-    `
-    const productWidth = css`
-        min-width: ${divide(longestProduct, 1.8)}em;
-    `
-    const verticalWidth = css`
-        min-width: ${divide(longestVertical, 1.8)}em;
-    `
-
-    useEffect(() => {
-        let VerbIndex = 1
-        let ProductIndex = 1
-        let verticalIndex = 1
-
-        const verbTimer = setInterval(() => {
-            setVerb(doing[VerbIndex])
-            VerbIndex  = (VerbIndex + 1)%(doing.length)
-        }, random(4,10)*1000)
-
-        const productTimer = setInterval(() => {
-            setProduct(what[ProductIndex])
-            ProductIndex  = (ProductIndex + 1)%(what.length)
-        }, random(4,10)*1000)
-
-        const verticalTimer = setInterval(() => {
-            setVertical(whom[verticalIndex])
-            verticalIndex  = (verticalIndex + 1)%(whom.length)
-        }, random(4,10)*1000)
-
-        return () => {
-          clearInterval(verbTimer)
-          clearInterval(productTimer)
-          clearInterval(verticalTimer)
-        }
-    }, [])
-
-    return (
-    <HeroWrapper current={verb}>
-        <Content>
-            <Title> We <Span css={verbWidth}>{verb}</Span></Title>
-            <Title><Span css={productWidth}>{product}</Span> for </Title>
-            <Title><Span css={verticalWidth}>{vertical}</Span> companies.</Title>
-        </Content>
-    </HeroWrapper>
+const HeroHome = props => {
+    return(
+        <Hero>
+          <div className="under">
+            <HeroContainer>
+              <h1>red llama</h1>
+            </HeroContainer>
+          </div>
+          <CSSTransition in={true} appear={true} timeout={3000} classNames="my-node">
+              <div>
+                <HeroContainer>
+                  <CSSTransition in={true} appear={true} timeout={800} classNames="header">
+                    <h1>red llama</h1>
+                  </CSSTransition>
+                </HeroContainer>
+              </div>
+          </CSSTransition>
+      </Hero>
 )}
 
-export default Hero
+export default HeroHome
