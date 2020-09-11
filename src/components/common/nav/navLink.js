@@ -5,7 +5,6 @@ import theme from "../../../styles/theme"
 
 export const NavLink = styled(Link)`
   position: relative;
-  color: #fff;
   display: flex;
   text-decoration: none;
   text-transform: capitalize;

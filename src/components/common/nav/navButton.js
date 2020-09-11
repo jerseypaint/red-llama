@@ -10,7 +10,6 @@ export const NavButton = styled.button`
   font: inherit;
   cursor: pointer;
   outline: inherit;
-  color: #fff;
   display: flex;
 
   &:after {

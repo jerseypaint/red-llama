@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Layout from "../components/common/layout"
 import SEO from "../components/common/seo"
 import ProjectsList from "../components/projects/projectsList"
-
+import Hero from "../components/home/hero"
 
 
 const IndexPage = ({data, theme}) => {
@@ -12,7 +12,7 @@ const IndexPage = ({data, theme}) => {
  return (
   <Layout currentPage={`index`}>
   <SEO title="Home" />
-
+      <Hero />
       <ProjectsList projects={data.allMarkdownRemark.edges} />
 
 

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { random, divide } from "lodash"
 import { css } from "styled-components"
 import { CSSTransition } from 'react-transition-group'
-
+import { Link } from "gatsby"
 import theme from "../../styles/theme"
 import media from "../../styles/media"
 
@@ -57,7 +57,6 @@ const Hero = styled.div`
     background: white;
     z-index: 1;
     display: block;
-    height: 400px;
     width: 100%;
     font-size: 40px;
     overflow: hidden;
@@ -75,6 +74,11 @@ const Hero = styled.div`
 const HeroContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+
+  p {
+    font-size: 2rem;
+    max-width: 800px;
+  }
 `
 
 const Test = styled.div`
@@ -89,6 +93,7 @@ const HeroHome = props => {
           <div className="under">
             <HeroContainer>
               <h1>red llama</h1>
+              <p>We create web applications for a variety of uses and industries; from ecommerce stores to in-house sales applications. Check out our work below or learn more about <Link to={`/services`}>what we do.</Link></p>
             </HeroContainer>
           </div>
           <CSSTransition in={true} appear={true} timeout={3000} classNames="my-node">

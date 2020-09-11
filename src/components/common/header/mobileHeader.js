@@ -24,10 +24,6 @@ const MobileNav = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;   
-
-    a {
-        color: #fff;
-    }
 `
 
 const LogoLink = styled(NavLink)`

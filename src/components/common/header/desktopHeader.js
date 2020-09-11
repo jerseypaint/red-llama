@@ -22,7 +22,6 @@ const DesktopHeaderWrapper = styled.div`
 
         a, button {
         font-size: 1.2rem;
-        color: ${props => props.currentPage === `index` && !props.isScrolled ? `#fff` : props.theme.textColor};
 
         &:hover::after {
             background-color: ${props => props.currentPage === `index` && !props.isScrolled ? `#fff` : props.theme.accentColor};
