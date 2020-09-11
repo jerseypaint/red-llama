@@ -57,11 +57,11 @@ const Meta = styled.div`
 `
 
 const Projects = (props) => {
-    const scrollRef = useRef(null)
+
     const scroll = {
         // Locomotive Scroll
         // https://github.com/locomotivemtl/locomotive-scroll#instance-options
-        container: "#___gatsby",
+        container: "#scrollContainer",
         options: {
           smooth: true,
           smoothMobile: false,
@@ -72,32 +72,19 @@ const Projects = (props) => {
       }
 
     useEffect(() => {
-        let locomotiveScroll
-        locomotiveScroll = new LocomotiveScroll({
+        const locomotiveScroll = new LocomotiveScroll({
             el: document.querySelector(scroll.container),
             ...scroll.options,
         })
         locomotiveScroll.update()
-    
-        // Exposing to the global scope for ease of use.
-        window.scroll = locomotiveScroll
-    
-        locomotiveScroll.on("scroll", func => {
-            // Update `data-direction` with scroll direction.
-            document.documentElement.setAttribute("data-direction", func.direction)
-        })
-    
-        return () => {
-            if (locomotiveScroll) locomotiveScroll.destroy()
-        }
-        })
+    },[])
 
     return (
         <div>
         <ProjectContainer data-scroll-section>
             {props.projects.map(project => (
-                <SingleProject>
-                    <Info data-scroll={``} data-scroll-speed="-2">
+                <SingleProject data-scroll-section>
+                    <Info data-scroll={``} data-scroll-speed="-2" data-scroll-position="top">
                         <Title>
                             <h3>{project.node.frontmatter.title}</h3>
                         </Title>
@@ -108,8 +95,7 @@ const Projects = (props) => {
                         <p>{project.node.frontmatter.description}</p>
                         </Meta>
                     </Info>
-
-                    <FeaturedImage data-scroll={``} data-scroll-speed="4" data-scroll-position="top">
+                    <FeaturedImage data-scroll={``} data-scroll-speed="4">
                         <Link to={project.node.frontmatter.path}><Image fluid={project.node.frontmatter.featuredImage.childImageSharp.fluid} /></Link>
                     </FeaturedImage>
                 </SingleProject>

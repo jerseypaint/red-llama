@@ -2,12 +2,11 @@ import React, { useState, useEffect, useRef } from "react"
 
 import Layout from "../components/common/layout"
 import SEO from "../components/common/seo"
-import { Work } from "../components/home/work"
-import { WorkMobile } from "../components/home/workMobile"
 import Hero from "../components/home/hero"
 import Services from "../components/home/services"
 import CTA from "../components/common/cta"
 import { media, sizes } from "../styles/media"
+import ProjectsList from "../components/projects/projectsList"
 
 const IndexPage = ({data, theme}) => {
   const [isMobile, setIsMobile] = useState(false)
@@ -22,11 +21,9 @@ const IndexPage = ({data, theme}) => {
   <Layout currentPage={`index`}>
     <SEO title="Home" />
     <Hero doing={data.homeJson.hero.doing} what={data.homeJson.hero.what} whom={data.homeJson.hero.whom} />
-    <Services description={data.homeJson.services.description} services={data.servicesJson.services} />
-      {isMobile
-        ? <WorkMobile theme={({theme}) => theme} projects={data.allMarkdownRemark.edges} />
-        : <Work theme={theme} projects={data.allMarkdownRemark.edges} />
-      }
+    <div id={`scrollContainer`} data-scroll-container>
+      <ProjectsList projects={data.allMarkdownRemark.edges} />
+    </div>
     <CTA />
   </Layout>
 )
