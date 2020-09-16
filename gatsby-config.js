@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `red llama`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `A web app development group.`,
     twitter: `@redllama`,
     url: `https://redllamagroup.com`,
     logo: `src/images/logo.png`,
