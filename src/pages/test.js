@@ -14,8 +14,6 @@ const IndexPage = ({data, theme}) => {
   <SEO title="Home" />
       <Hero />
       <ProjectsList projects={data.allMarkdownRemark.edges} />
-
-
     </Layout>
 )
 }
@@ -34,7 +32,7 @@ export const query = graphql`
             tags
             featuredImage {
               childImageSharp {
-                fluid {
+                fluid (maxWidth:1400) {
                   ...GatsbyImageSharpFluid
                 }
               }

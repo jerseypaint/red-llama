@@ -11,14 +11,14 @@ const TitleWrapper = styled.div`
     max-width: 800px;
     height: 100%;
     
-    h1 {
-        font-size: 2.4rem;
+    h2 {
+        font-size: 2rem;
     }
 
     ${media.tablet`
-        padding: 8rem 0;
-        h1 {
-            font-size: 5rem;
+        padding: 8rem 0 0;
+        h2 {
+            font-size: 3rem;
         }
     `}
 `
@@ -41,7 +41,11 @@ export const PageHeader = props => {
     return (
         <Section css={props.bgImage ? bgImageStyle : undefined}>
                 <TitleWrapper>
-                    <h1>{props.title}</h1>
+                    <h2>{props.title}</h2>
+                    {props.subtitle && 
+                        <p>{props.subtitle}</p>
+                    }
+
                 </TitleWrapper>
         </Section>
     )

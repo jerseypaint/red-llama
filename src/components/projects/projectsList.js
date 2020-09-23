@@ -4,102 +4,65 @@ import { css } from "styled-components"
 import Image from "gatsby-image"
 import { Link } from "gatsby"
 import media from "../../styles/media"
-import LocomotiveScroll from 'locomotive-scroll'
 
 const ProjectContainer = styled.div`
     max-width: 1200px;
     margin: 0 auto;
 `
 const SingleProject = styled.div`
-    display: flex;
-    margin: 300px 0;
+    margin: 100px 0;
 `
 
 const Info = styled.div`
-    z-index: 4;
-    background: #eee;
-    padding: 2rem;
+    z-index: 1;
 
     p {
         margin-top: 1rem;
     }
 
     ${media.tablet`
-        max-width: 500px;
+        display: flex;
+        align-items: flex-end;
     `}
 `
 
 const Title = styled.div`
+    margin: 0 2rem 0 0;
+    z-index: 2;
+
     h3 {
-        font-size: 5rem;
+        font-size: 6.875rem;
+        margin: 0;
     }
 `
 
 const FeaturedImage = styled.div`
     flex: 1 1;
-    margin-left: -1rem;
-
+    padding: 0;
     a {
         display: block;
-        opacity: 0.8;
-        transform: scale(1 , 1);
-        transition: opacity 800ms ease-in-out, transform 600ms ease-in-out;
+        position: relative;
+        margin: 0;
 
         &:hover {
-            transform: scale(1.13, 1.13);
-            opacity: 1;
+            
         }
     }
 `
 
 const Meta = styled.div`
-    max-width: 480px;
+
 `
 
 const Projects = (props) => {
-    const scrollRef = useRef(null)
-    const scroll = {
-        // Locomotive Scroll
-        // https://github.com/locomotivemtl/locomotive-scroll#instance-options
-        container: "#___gatsby",
-        options: {
-          smooth: true,
-          smoothMobile: false,
-          getDirection: true,
-          touchMultiplier: 2.5,
-          lerp: 0.15,
-        },
-      }
-
-    useEffect(() => {
-        let locomotiveScroll
-        locomotiveScroll = new LocomotiveScroll({
-            el: document.querySelector(scroll.container),
-            ...scroll.options,
-        })
-        locomotiveScroll.update()
-    
-        // Exposing to the global scope for ease of use.
-        window.scroll = locomotiveScroll
-    
-        locomotiveScroll.on("scroll", func => {
-            // Update `data-direction` with scroll direction.
-            document.documentElement.setAttribute("data-direction", func.direction)
-        })
-    
-        return () => {
-            if (locomotiveScroll) locomotiveScroll.destroy()
-        }
-        })
-
-    return (
+        return (
         <div>
-        <ProjectContainer data-scroll-section>
+        <ProjectContainer >
             {props.projects.map(project => (
                 <SingleProject>
-                    <Info data-scroll={``} data-scroll-speed="-2">
+                    <Info>
                         <Title>
-                            <h3>{project.node.frontmatter.title}</h3>
+                            <h3><span>{project.node.frontmatter.title}</span></h3>
                         </Title>
                         <Meta>
                         {project.node.frontmatter.tags.map((tag, index, tags) => (
@@ -109,8 +72,8 @@ const Projects = (props) => {
                         </Meta>
                     </Info>
 
-                    <FeaturedImage data-scroll={``} data-scroll-speed="4" data-scroll-position="top">
-                        <Link to={project.node.frontmatter.path}><Image fluid={project.node.frontmatter.featuredImage.childImageSharp.fluid} /></Link>
+                    <FeaturedImage>
+                        <Link to={project.node.frontmatter.path}><Image fluid={{...project.node.frontmatter.featuredImage.childImageSharp.fluid, aspectRatio: 16 / 9}} /></Link>
                     </FeaturedImage>
                 </SingleProject>
             ))}

@@ -7,19 +7,7 @@ module.exports = {
     logo: `src/images/logo.png`,
     menuLinks:[
       {
-        name:'home',
-        link:'/'
-      },
-      {
-        name:'services',
-        link:'/services'
-      },
-      {
-        name:'projects',
-        link:'/projects'
-      },
-      {
-        name:'contact',
+        name:'contact us',
         link:'/contact'
       }
     ]
