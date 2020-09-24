@@ -55,43 +55,12 @@ const Meta = styled.div`
 `
 
 const Projects = (props) => {
-<<<<<<< HEAD
-
-    const scroll = {
-        // Locomotive Scroll
-        // https://github.com/locomotivemtl/locomotive-scroll#instance-options
-        container: "#scrollContainer",
-        options: {
-          smooth: true,
-          smoothMobile: false,
-          getDirection: true,
-          touchMultiplier: 2.5,
-          lerp: 0.15,
-        },
-      }
-
-    useEffect(() => {
-        const locomotiveScroll = new LocomotiveScroll({
-            el: document.querySelector(scroll.container),
-            ...scroll.options,
-        })
-        locomotiveScroll.update()
-    },[])
-
-    return (
-=======
         return (
->>>>>>> 710d400c79ba673162e2a73c8febc5b00d174c6f
         <div>
         <ProjectContainer >
             {props.projects.map(project => (
-<<<<<<< HEAD
-                <SingleProject data-scroll-section>
-                    <Info data-scroll={``} data-scroll-speed="-2" data-scroll-position="top">
-=======
                 <SingleProject>
                     <Info>
->>>>>>> 710d400c79ba673162e2a73c8febc5b00d174c6f
                         <Title>
                             <h3><span>{project.node.frontmatter.title}</span></h3>
                         </Title>
@@ -102,14 +71,9 @@ const Projects = (props) => {
                         <p>{project.node.frontmatter.description}</p>
                         </Meta>
                     </Info>
-<<<<<<< HEAD
-                    <FeaturedImage data-scroll={``} data-scroll-speed="4">
-                        <Link to={project.node.frontmatter.path}><Image fluid={project.node.frontmatter.featuredImage.childImageSharp.fluid} /></Link>
-=======
 
                     <FeaturedImage>
                         <Link to={project.node.frontmatter.path}><Image fluid={{...project.node.frontmatter.featuredImage.childImageSharp.fluid, aspectRatio: 16 / 9}} /></Link>
->>>>>>> 710d400c79ba673162e2a73c8febc5b00d174c6f
                     </FeaturedImage>
                 </SingleProject>
             ))}
