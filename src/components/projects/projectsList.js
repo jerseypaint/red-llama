@@ -4,59 +4,58 @@ import { css } from "styled-components"
 import Image from "gatsby-image"
 import { Link } from "gatsby"
 import media from "../../styles/media"
-import LocomotiveScroll from 'locomotive-scroll'
 
 const ProjectContainer = styled.div`
     max-width: 1200px;
     margin: 0 auto;
 `
 const SingleProject = styled.div`
-    display: flex;
-    margin: 300px 0;
+    margin: 100px 0;
 `
 
 const Info = styled.div`
-    z-index: 4;
-    background: #eee;
-    padding: 2rem;
+    z-index: 1;
 
     p {
         margin-top: 1rem;
     }
 
     ${media.tablet`
-        max-width: 500px;
+        display: flex;
+        align-items: flex-end;
     `}
 `
 
 const Title = styled.div`
+    margin: 0 2rem 0 0;
+    z-index: 2;
+
     h3 {
-        font-size: 5rem;
+        font-size: 6.875rem;
+        margin: 0;
     }
 `
 
 const FeaturedImage = styled.div`
     flex: 1 1;
-    margin-left: -1rem;
-
+    padding: 0;
     a {
         display: block;
-        opacity: 0.8;
-        transform: scale(1 , 1);
-        transition: opacity 800ms ease-in-out, transform 600ms ease-in-out;
+        position: relative;
+        margin: 0;
 
         &:hover {
-            transform: scale(1.13, 1.13);
-            opacity: 1;
+            
         }
     }
 `
 
 const Meta = styled.div`
-    max-width: 480px;
+
 `
 
 const Projects = (props) => {
+<<<<<<< HEAD
 
     const scroll = {
         // Locomotive Scroll
@@ -80,13 +79,21 @@ const Projects = (props) => {
     },[])
 
     return (
+=======
+        return (
+>>>>>>> 710d400c79ba673162e2a73c8febc5b00d174c6f
         <div>
-        <ProjectContainer data-scroll-section>
+        <ProjectContainer >
             {props.projects.map(project => (
+<<<<<<< HEAD
                 <SingleProject data-scroll-section>
                     <Info data-scroll={``} data-scroll-speed="-2" data-scroll-position="top">
+=======
+                <SingleProject>
+                    <Info>
+>>>>>>> 710d400c79ba673162e2a73c8febc5b00d174c6f
                         <Title>
-                            <h3>{project.node.frontmatter.title}</h3>
+                            <h3><span>{project.node.frontmatter.title}</span></h3>
                         </Title>
                         <Meta>
                         {project.node.frontmatter.tags.map((tag, index, tags) => (
@@ -95,8 +102,14 @@ const Projects = (props) => {
                         <p>{project.node.frontmatter.description}</p>
                         </Meta>
                     </Info>
+<<<<<<< HEAD
                     <FeaturedImage data-scroll={``} data-scroll-speed="4">
                         <Link to={project.node.frontmatter.path}><Image fluid={project.node.frontmatter.featuredImage.childImageSharp.fluid} /></Link>
+=======
+
+                    <FeaturedImage>
+                        <Link to={project.node.frontmatter.path}><Image fluid={{...project.node.frontmatter.featuredImage.childImageSharp.fluid, aspectRatio: 16 / 9}} /></Link>
+>>>>>>> 710d400c79ba673162e2a73c8febc5b00d174c6f
                     </FeaturedImage>
                 </SingleProject>
             ))}
