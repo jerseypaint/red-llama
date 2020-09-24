@@ -92,19 +92,13 @@ const Toggle = styled(NavButton)`
 const DesktopHeader = ({toggleTheme, isScrolled, logo, siteTitle, menu, currentPage }) => (
     <DesktopHeaderWrapper currentPage={currentPage} isScrolled={isScrolled} css={ isScrolled ? scrolledStyle : undefined} >
         <LogoWrapper>
-            <LogoLink to={`/`}><Img fluid={logo.childImageSharp.fluid} alt="red llama logo" /><span>{siteTitle}</span></LogoLink>
+            <LogoLink to={`/`}><Img fluid={logo.childImageSharp.fluid} alt="red llama logo" /></LogoLink>
         </LogoWrapper>
         <Nav>
             {menu.map(menuLink => (
                 <NavLink to={menuLink.link} >{menuLink.name}</NavLink>
             ))}
         </Nav>
-        <SubNavWrapper>
-            <Toggle onClick={toggleTheme}>
-                <Eclipse />
-            </Toggle>
-            <NavLink>Login</NavLink>
-        </SubNavWrapper>
     </DesktopHeaderWrapper>
 )
 

@@ -9,7 +9,7 @@ import { ServicesList } from "../components/services"
 const ServicesPage = ({data}) => (
   <Layout>
     <SEO title="Services" />
-    <PageHeader title={`Full stack development`} />
+    <PageHeader title={data.aboutJson.title} subtitle={data.aboutJson.description} />
     <ServicesList services={data.servicesJson.services} />
   </Layout>
 )
@@ -21,6 +21,10 @@ export const query = graphql`
             title
             description
         }
+    }
+    aboutJson {
+      title
+      description
     }
   }
 `

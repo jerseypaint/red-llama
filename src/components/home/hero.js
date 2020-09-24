@@ -21,7 +21,7 @@ const Hero = styled.div`
     text-align: left;
     top: 0;
     right: 0;
-    background: red;
+    background: ${theme.brand};
     color: white;
     z-index: 3;
   }
@@ -53,8 +53,6 @@ const Hero = styled.div`
   }
 
   .under {
-    color: black;
-    background: white;
     z-index: 1;
     display: block;
     width: 100%;
@@ -93,7 +91,7 @@ const HeroHome = props => {
           <div className="under">
             <HeroContainer>
               <h1>red llama</h1>
-              <p>We create web applications for a variety of uses and industries; from ecommerce stores to in-house sales applications. Check out our work below or learn more about <Link to={`/services`}>what we do.</Link></p>
+              <p>We create web apps for a variety of uses and industries - from online stores to enterprise applications. Check out our work below or learn more about <Link to={`/services`}>what we do.</Link></p>
             </HeroContainer>
           </div>
           <CSSTransition in={true} appear={true} timeout={3000} classNames="my-node">
