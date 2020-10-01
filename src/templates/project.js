@@ -13,7 +13,7 @@ const ProjectTemplate = ({data}) => {
     return (
   <Layout>
     <SEO title={frontmatter.title} />
-        <PageHeader title={frontmatter.title} bgImage={frontmatter.featuredImage.childImageSharp.original.src} />
+        <PageHeader title={frontmatter.title} image={frontmatter.featuredImage.childImageSharp.fluid} />
         <ProjectsBody html={html} tags={frontmatter.tags} />
   </Layout>
 )}
@@ -27,9 +27,9 @@ export const query = graphql`
         tags
         featuredImage {
             childImageSharp {
-                original {
-                    src
-                }
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
             }
         }
       }

@@ -7,27 +7,19 @@ import { Eclipse } from "../icons"
 import media from "../../../styles/media"
 
 const DesktopHeaderWrapper = styled.div`
-    display: none;
+    position: absolute;
+    top:0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.6rem;
+    transition: all 600ms ease-in-out;
+    z-index: 3;
 
-    ${media.tablet`
-        position: absolute;
-        top:0;
-        left: 0;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        padding: 0.6rem;
-        z-index: 99;
-        transition: all 600ms ease-in-out;
-
-        a, button {
+    a, button {
         font-size: 1.2rem;
-
-        &:hover::after {
-            background-color: ${props => props.currentPage === `index` && !props.isScrolled ? `#fff` : props.theme.accentColor};
-        }
     }  
-    `}
 `
 
 const LogoWrapper = styled.div`

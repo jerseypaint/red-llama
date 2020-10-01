@@ -8,6 +8,7 @@ import DesktopHeader from "./desktopHeader"
 import MobileHeader from "./mobileHeader"
 
 const HeaderWrapper = styled.div`
+
    a, button {
     font-family: "IBM Plex Sans";
   }
@@ -63,12 +64,6 @@ useEffect(() => {
       isScrolled={isScrolled}
       toggleTheme={toggleTheme}
       currentPage={currentPage}
-    />
-    <MobileHeader 
-      logo={data.image} 
-      siteTitle={data.site.siteMetadata.title} 
-      menu={data.site.siteMetadata.menuLinks} 
-      isScrolled={isScrolled}
     />
   </HeaderWrapper>
 )}

@@ -23,7 +23,7 @@ const Hero = styled.div`
     right: 0;
     background: ${theme.brand};
     color: white;
-    z-index: 3;
+    z-index: 99;
   }
 
   .my-node-appear-active, .my-node-appear-done {
@@ -61,6 +61,10 @@ const Hero = styled.div`
     text-align: left;
     top: 0;
     right: 0;
+
+    h1 {
+      color: ${theme.brand};
+    }
   }
 
   h1 {
