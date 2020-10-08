@@ -64,7 +64,7 @@ const ImageLink = styled(Link)`
     }
 `
 
-const Projects = (props) => {
+const ProjectsList = (props) => {
         return (
         <div>
         <ProjectContainer >
@@ -91,4 +91,4 @@ const Projects = (props) => {
     )
 }
 
-export default Projects
+export default ProjectsList

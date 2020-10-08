@@ -19,7 +19,7 @@ const CTA = props => (
     <Section>
         <Container>
             <ScrollAnimation animateIn="fadeInUp">
-                <StyledLink>Let's Talk</StyledLink>
+                <StyledLink to={`/contact`}>Let's Talk</StyledLink>
             </ScrollAnimation>
         </Container>       
     </Section>

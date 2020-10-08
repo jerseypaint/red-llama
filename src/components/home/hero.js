@@ -17,7 +17,7 @@ const Hero = styled.div`
     width: 100%;
     font-size: 40px;
     overflow: hidden;
-    position: absolute;
+    position: fixed;
     text-align: left;
     top: 0;
     right: 0;
