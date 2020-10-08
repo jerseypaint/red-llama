@@ -1,31 +1,21 @@
 import React, { useState, useEffect, useRef } from "react"
 
+import styled from "styled-components"
 import Layout from "../components/common/layout"
 import SEO from "../components/common/seo"
-import Hero from "../components/home/hero"
-import Services from "../components/home/services"
-import CTA from "../components/common/cta"
-import { media, sizes } from "../styles/media"
 import ProjectsList from "../components/projects/projectsList"
+import Hero from "../components/home/hero"
+import CTA from "../components/common/cta"
 
 const IndexPage = ({data, theme}) => {
-  const [isMobile, setIsMobile] = useState(false)
-  
-  useEffect(() => {
-    if (window.innerWidth <= sizes.mobile) {
-     setIsMobile(true)
-    }
-  })
 
  return (
   <Layout currentPage={`index`}>
-    <SEO title="Home" />
-    <Hero doing={data.homeJson.hero.doing} what={data.homeJson.hero.what} whom={data.homeJson.hero.whom} />
-    <div id={`scrollContainer`} data-scroll-container>
+  <SEO title="Home" />
+      <Hero />
       <ProjectsList projects={data.allMarkdownRemark.edges} />
-    </div>
-    <CTA />
-  </Layout>
+      <CTA />
+    </Layout>
 )
 }
 
@@ -33,21 +23,6 @@ export default IndexPage
 
 export const query = graphql`
   query {
-    homeJson {
-      hero {
-        doing
-        what
-        whom
-      }
-      services {
-        description
-      }
-    }
-    servicesJson {
-      services {
-        title
-      }
-    }
     allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}, limit: 3, filter: {frontmatter: {type: {eq: "project"}}}) {
       edges {
         node {
@@ -58,7 +33,7 @@ export const query = graphql`
             tags
             featuredImage {
               childImageSharp {
-                fluid {
+                fluid (maxWidth:1400) {
                   ...GatsbyImageSharpFluid
                 }
               }

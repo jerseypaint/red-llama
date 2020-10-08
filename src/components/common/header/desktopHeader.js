@@ -3,7 +3,6 @@ import styled, { css } from "styled-components"
 
 import Img from "gatsby-image"
 import { Nav, NavLink, NavButton } from "../nav"
-import { Eclipse } from "../icons"
 import media from "../../../styles/media"
 
 const DesktopHeaderWrapper = styled.div`

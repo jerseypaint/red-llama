@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-
 import Layout from "../components/common/layout"
 import SEO from "../components/common/seo"
 import { PageHeader } from "../components/common/pageHeader"
@@ -14,7 +13,7 @@ const ProjectTemplate = ({data}) => {
   <Layout>
     <SEO title={frontmatter.title} />
         <PageHeader title={frontmatter.title} image={frontmatter.featuredImage.childImageSharp.fluid} />
-        <ProjectsBody html={html} tags={frontmatter.tags} />
+        <ProjectsBody html={html} tags={frontmatter.tags} siteLink={frontmatter.siteLink} />
   </Layout>
 )}
 
@@ -25,6 +24,7 @@ export const query = graphql`
         title
         description
         tags
+        siteLink
         featuredImage {
             childImageSharp {
               fluid {

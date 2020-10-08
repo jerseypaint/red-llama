@@ -5,27 +5,14 @@ import theme from "../../../styles/theme"
 
 export const NavLink = styled(Link)`
   position: relative;
-  display: flex;
-  text-decoration: none;
   text-transform: capitalize;
-
-  &:after {
-    content:'';
-    position: absolute;
-    bottom:0;
-    left:0;
-    width: 0%;
-    height: 3px;
-    background-color: ${theme.brand};
-    transition: all 600ms ease-in-out;
-  }
-
+  color: #000;
+  z-index: 3;
+  padding-bottom: 1.5px;
   &:hover {
-    &:after {
-        width: 100%;
-    }
+    background-position: 0 calc(100% - 1.5px);
+    padding-bottom: 3px;
   }
-
   ${media.tablet`
     margin: 0 1rem;
   `}

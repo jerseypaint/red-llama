@@ -5,6 +5,7 @@ date: "2020-04-010"
 title: "Next Hous"
 description: "Chocolate lollipop cheesecake pudding soufflé jujubes carrot cake. Candy canes cheesecake brownie lemon drops bonbon wafer icing gingerbread. Jelly-o lollipop topping liquorice chocolate bar chupa chups. Jelly pastry cheesecake jelly beans lollipop candy canes biscuit."
 featuredImage: "../images/next-hous.png"
+siteLink: "https://nexthous.com"
 tags: ["web design", "web app", "hosting and maintenance"]
 color: "#9cb200"
 ---

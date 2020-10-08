@@ -54,6 +54,16 @@ const Meta = styled.div`
 
 `
 
+const ImageLink = styled(Link)`
+    border: none;
+    padding: 0;
+    
+    &:hover {
+        background-image: none;
+        padding: 0;
+    }
+`
+
 const Projects = (props) => {
         return (
         <div>
@@ -71,9 +81,8 @@ const Projects = (props) => {
                         <p>{project.node.frontmatter.description}</p>
                         </Meta>
                     </Info>
-
                     <FeaturedImage>
-                        <Link to={project.node.frontmatter.path}><Image fluid={{...project.node.frontmatter.featuredImage.childImageSharp.fluid, aspectRatio: 16 / 9}} /></Link>
+                        <ImageLink to={project.node.frontmatter.path}><Image fluid={{...project.node.frontmatter.featuredImage.childImageSharp.fluid, aspectRatio: 16 / 9}} /></ImageLink>
                     </FeaturedImage>
                 </SingleProject>
             ))}

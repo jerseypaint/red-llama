@@ -6,20 +6,22 @@ import Section from "./section"
 import {StyledLink} from "../common/styledLink"
 
 
-const BigLinkWrapper = styled.div`
+const Container = styled.div`
+    margin: 0 auto;
+    max-width: 1200px;
+
      a {
         font-size: 4rem;
-        margin-left: 10%;
     }
 `
 
 const CTA = props => (
     <Section>
-        <BigLinkWrapper>
+        <Container>
             <ScrollAnimation animateIn="fadeInUp">
                 <StyledLink>Let's Talk</StyledLink>
             </ScrollAnimation>
-        </BigLinkWrapper>       
+        </Container>       
     </Section>
 )
 

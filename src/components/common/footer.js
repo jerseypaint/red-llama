@@ -4,15 +4,19 @@ import { css } from "styled-components"
 import Img from "gatsby-image"
 import { Nav, NavLink, NavButton } from "./nav"
 import media from "../../styles/media"
+import theme from "../../styles/theme"
 import Section from "./section"
 import { gridContainer, GridContainer } from "./gridContainer"
 
-const LogoWrapper = styled.div`
-    grid-column: 1 / span 4;
-
+const FlexContainer = styled.div`
     ${media.tablet`
-        grid-column: 1;
+        display: flex;
+        justify-content: space-between;
     `}
+`
+
+const LogoWrapper = styled.div`
+
 `
 
 const LogoLink = styled(NavLink)`
@@ -26,33 +30,23 @@ const LogoLink = styled(NavLink)`
         min-width: 80px;
     }
 `
-
-const styleNav = css`
-    display: block;
-    grid-column: 1 / span 4;
-
-    ${media.tablet`
-        grid-column: 2;
-    `}
-`
-
 const styleFooter = css`
-    background-color: #000;
+    background-color: ${theme.lightGrey};
 `
 
 const Footer = props => (
     <footer css={styleFooter}>
         <Section>
-            <GridContainer>
+            <FlexContainer>
                 <LogoWrapper>
                     <LogoLink to={`/`}><Img fluid={props.logo.childImageSharp.fluid} alt="red llama logo" /><span>{props.siteTitle}</span></LogoLink>
                 </LogoWrapper>
-                <Nav css={styleNav}>
+                <Nav>
                     {props.menu.map(menuLink => (
                         <NavLink to={menuLink.link} >{menuLink.name}</NavLink>
                     ))}
                 </Nav>
-            </GridContainer>
+            </FlexContainer>
         </Section>
     </footer>
 )

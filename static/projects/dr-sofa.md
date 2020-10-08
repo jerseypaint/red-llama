@@ -5,6 +5,7 @@ date: "2020-01-04"
 title: "Dr. Sofa"
 description: "Chocolate cake bonbon jelly danish caramels. Marzipan candy sweet. Liquorice toffee oat cake marzipan carrot cake. Pie tart marzipan toffee danish chocolate cake toffee chupa chups. Danish dessert icing sweet candy canes caramels. Gingerbread chupa chups muffin caramels lemon drops liquorice candy canes."
 featuredImage: "../images/dr-sofa.jpg"
+siteLink: "https://drsofa.com"
 tags: ["web design", "wordpress", "process automation", "software integration"]
 color: "#bb171d"
 ---

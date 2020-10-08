@@ -10,6 +10,16 @@ module.exports = {
         name:'contact us',
         link:'/contact'
       }
+    ],
+    footerLinks:[
+      {
+        name:'contact us',
+        link:'/contact'
+      },
+      {
+        name:'what we do',
+        link:'/about'
+      }
     ]
   },
   plugins: [
@@ -48,6 +58,14 @@ module.exports = {
       options: {
         pathToConfigModule: `src/utils/typography`,
       },
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /images/
+        }
+      }
     },
   ],
 }

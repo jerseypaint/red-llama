@@ -6,7 +6,6 @@ import Img from "gatsby-image"
 import { NavLink, NavButton } from "../nav"
 import media from "../../../styles/media"
 import theme from "../../../styles/theme"
-import { Bars } from "../icons"
 
 const MobileHeaderWrapper = styled.div`
     position: fixed;
@@ -60,7 +59,7 @@ const MobileHeader = ({isScrolled, menu, logo, siteTitle}) => {
         <MobileHeaderWrapper  isScrolled={isScrolled} css={ isScrolled ? scrolledStyle : undefined} >
             <MobileNav>
                 <LogoLink to={`/`}><Img fluid={logo.childImageSharp.fluid} alt="red llama logo" /><span>{siteTitle}</span></LogoLink>
-                <NavButton onClick={() => setShowDrawer(!showDrawer)}><Bars /></NavButton>
+                <NavButton onClick={() => setShowDrawer(!showDrawer)}>P</NavButton>
             </MobileNav>
 
             {showDrawer && (<NavDrawer>

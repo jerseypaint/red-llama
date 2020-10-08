@@ -27,6 +27,10 @@ const Layout = props => {
           name
           link
         }
+        footerLinks {
+          name
+          link
+        }
       }
     }
     image: file(relativePath: { eq: "logo.png" }) {
@@ -53,7 +57,7 @@ const Layout = props => {
         <Footer
           logo={data.image} 
           siteTitle={data.site.siteMetadata.title} 
-          menu={data.site.siteMetadata.menuLinks} 
+          menu={data.site.siteMetadata.footerLinks} 
         />
       </>
     </ThemeProvider>

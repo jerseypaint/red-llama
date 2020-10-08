@@ -3,37 +3,26 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import theme from "../../styles/theme"
 
-import { ChevronCircleRight } from "../common/icons"
-
 const LinkWrapper = styled(Link)`
     position: relative;
     display: inline-block;
     padding-right: 2px;
     color:${props => props.theme.textColor};
     font-size: 1.2rem;
+    line-height: 1.2;
     text-decoration: none;
-    --fa-secondary-color: transparent;
-
-    &:after {
-           content:'';
-           position: absolute;
-           bottom:0;
-           left:0;
-           width: 0%;
-           height: 3px;
-           background-color: ${theme.brand};
-           transition: all 600ms ease-in-out;
-       }
-
+    padding-bottom: 1.5px;
+    cursor: pointer;
+    
     &:hover {
-       &:after {
-           width: 100%;
-       }
+        background-position: 0 calc(100% - 1.5px);
+        padding-bottom: 3px;
     }
 `
 
 export const StyledLink = props => {
-    return (<LinkWrapper to={props.to} css={props.css}>
-         <ChevronCircleRight /> {props.children}
-    </LinkWrapper>)
+    return (
+        <LinkWrapper to={props.to} css={props.css}>
+            <span>{props.children}</span>
+        </LinkWrapper>)
 }
