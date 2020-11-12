@@ -16,7 +16,7 @@ const FlexContainer = styled.div`
 `
 
 const LogoWrapper = styled.div`
-
+    margin-left: 1rem;
 `
 
 const LogoLink = styled(NavLink)`
@@ -25,9 +25,15 @@ const LogoLink = styled(NavLink)`
     padding: 0;
     text-transform: lowercase;
     height: 100px;
+    background-image: none;
     
     .gatsby-image-wrapper {
         min-width: 80px;
+    }
+
+    &:hover {
+        color: ${theme.brand};
+        background-image: none;
     }
 `
 const styleFooter = css`
@@ -36,7 +42,6 @@ const styleFooter = css`
 
 const Footer = props => (
     <footer css={styleFooter}>
-        <Section>
             <FlexContainer>
                 <LogoWrapper>
                     <LogoLink to={`/`}><Img fluid={props.logo.childImageSharp.fluid} alt="red llama logo" /><span>{props.siteTitle}</span></LogoLink>
@@ -47,7 +52,6 @@ const Footer = props => (
                     ))}
                 </Nav>
             </FlexContainer>
-        </Section>
     </footer>
 )
 

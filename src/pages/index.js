@@ -7,14 +7,23 @@ import ProjectsList from "../components/projects/projectsList"
 import Hero from "../components/home/hero"
 import CTA from "../components/common/cta"
 
-const IndexPage = ({data, theme}) => {
+const WelcomeWrapper = styled.div`
+  display: ${props => props.welcomed ? `block` : `none` };
+`
 
+const IndexPage = ({data, theme}) => {
+  const [welcomed, setWelcomed] = useState(false)
+  function setWelcomedTrue() {
+    setWelcomed(true)
+  }
  return (
   <Layout currentPage={`index`}>
   <SEO title="Home" />
-      <Hero />
-      <ProjectsList projects={data.allMarkdownRemark.edges} />
-      <CTA />
+      <Hero setWelcomed={setWelcomedTrue} welcomed={welcomed} />
+      <WelcomeWrapper welcomed={welcomed}>
+        <ProjectsList projects={data.allMarkdownRemark.edges} />
+        <CTA />
+      </WelcomeWrapper>
     </Layout>
 )
 }
