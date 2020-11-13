@@ -28,7 +28,7 @@ export const query = graphql`
         featuredImage {
             childImageSharp {
               fluid {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
         }

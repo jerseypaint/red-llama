@@ -13,7 +13,6 @@ const Hero = styled.div`
   }
 
   h1 {
-    margin-top: 150px;
     font-size: 7rem;
   }
 `

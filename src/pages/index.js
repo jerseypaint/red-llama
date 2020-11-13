@@ -21,7 +21,7 @@ export default IndexPage
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}, limit: 3, filter: {frontmatter: {type: {eq: "project"}}}) {
+    allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}, filter: {frontmatter: {type: {eq: "project"}}}) {
       edges {
         node {
           frontmatter {
@@ -32,7 +32,7 @@ export const query = graphql`
             featuredImage {
               childImageSharp {
                 fluid (maxWidth:1400) {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }

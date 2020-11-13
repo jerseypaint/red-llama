@@ -6,9 +6,6 @@ import { Nav, NavLink, NavButton } from "../nav"
 import media from "../../../styles/media"
 
 const DesktopHeaderWrapper = styled.div`
-    position: absolute;
-    top:0;
-    left: 0;
     display: flex;
     justify-content: space-between;
     width: 100%;

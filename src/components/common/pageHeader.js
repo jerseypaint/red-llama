@@ -2,11 +2,23 @@ import React from "react"
 import styled from "styled-components"
 import { css } from "styled-components"
 import Img from "gatsby-image"
-import Section from "../common/section"
 import media from "../../styles/media"
 
+
+const Section = styled.div`
+  padding: 1rem 1rem;
+  position: relative;
+
+  ${media.tablet`
+    padding: 2rem 0rem;
+  `}
+
+  h1 {
+    margin-top: .667rem;
+  }
+`
+
 const Container = styled.div`
-  padding-top: 80px;
   margin: 0 auto;
   max-width: 800px;
 `
