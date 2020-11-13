@@ -1,25 +1,18 @@
-import React, { useState, useEffect, useRef } from "react"
+import React from "react"
 
-import styled from "styled-components"
 import Layout from "../components/common/layout"
 import SEO from "../components/common/seo"
 import ProjectsList from "../components/projects/projectsList"
-import Hero from "../components/home/hero"
+import Hero from "../components/home/heroPlain"
 import CTA from "../components/common/cta"
 
-const WelcomeWrapper = styled.div`
-  display: ${props => props.welcomed ? `block` : `none` };
-`
-
-const IndexPage = ({data, theme, welcomed, setWelcomedTrue }) => {
+const IndexPage = ({data}) => {
  return (
   <Layout>
     <SEO title="Home" />
-    <Hero setWelcomed={setWelcomedTrue} welcomed={welcomed} />
-    <WelcomeWrapper welcomed={welcomed}>
-      <ProjectsList projects={data.allMarkdownRemark.edges} />
-      <CTA />
-    </WelcomeWrapper>
+    <Hero />
+    <ProjectsList projects={data.allMarkdownRemark.edges} />
+    <CTA />
   </Layout>
 )
 }
