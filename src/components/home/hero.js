@@ -92,7 +92,7 @@ const Test = styled.div`
 const HeroHome = ({welcomed, setWelcomed}) => {
   const [backgroundIn, setBackgroundIn] = useState(true)
   const [textIn, setTextIn] = useState(true)
-  
+
     return(
         <Hero>
           <div className="under">
@@ -101,10 +101,10 @@ const HeroHome = ({welcomed, setWelcomed}) => {
               <p>We create web apps for a variety of uses and industries - from online stores to enterprise applications. Check out our work below or learn more about <Link to={`/services`}>what we do.</Link></p>
             </HeroContainer>
           </div>
-          <CSSTransition in={backgroundIn} appear={true} timeout={3000} classNames="my-node">
+          <CSSTransition in={backgroundIn} appear={backgroundIn} timeout={3000} classNames="my-node">
               <div>
                 <HeroContainer>
-                  <CSSTransition in={textIn} appear={true} timeout={800} classNames="header" onEntered={setWelcomed} >
+                  <CSSTransition in={textIn} appear={textIn} timeout={800} classNames="header" onEntered={setWelcomed}>
                     <h1>red llama</h1>
                   </CSSTransition>
                 </HeroContainer>

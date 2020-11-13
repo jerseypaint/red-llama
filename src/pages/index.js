@@ -11,20 +11,16 @@ const WelcomeWrapper = styled.div`
   display: ${props => props.welcomed ? `block` : `none` };
 `
 
-const IndexPage = ({data, theme}) => {
-  const [welcomed, setWelcomed] = useState(false)
-  function setWelcomedTrue() {
-    setWelcomed(true)
-  }
+const IndexPage = ({data, theme, welcomed, setWelcomedTrue }) => {
  return (
-  <Layout currentPage={`index`}>
-  <SEO title="Home" />
-      <Hero setWelcomed={setWelcomedTrue} welcomed={welcomed} />
-      <WelcomeWrapper welcomed={welcomed}>
-        <ProjectsList projects={data.allMarkdownRemark.edges} />
-        <CTA />
-      </WelcomeWrapper>
-    </Layout>
+  <Layout>
+    <SEO title="Home" />
+    <Hero setWelcomed={setWelcomedTrue} welcomed={welcomed} />
+    <WelcomeWrapper welcomed={welcomed}>
+      <ProjectsList projects={data.allMarkdownRemark.edges} />
+      <CTA />
+    </WelcomeWrapper>
+  </Layout>
 )
 }
 

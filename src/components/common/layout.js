@@ -44,22 +44,29 @@ const Layout = props => {
 `)
 
   const [theme, setTheme] = useState()
+  
+  const VisitorContext = React.createContext({
+    visted: false,
+    setVisited: () => {},
+  })
 
-
- 
+  const [welcomed, setWelcomed] = useState(false)
+  function setWelcomedTrue() {
+    setWelcomed(true)
+  }
 
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
-      <>
-        <Header siteTitle={data.site.siteMetadata.title} currentPage={props.currentPage} />
+      <VisitorContext value={false}>
+        <Header siteTitle={data.site.siteMetadata.title} />
           <main>{props.children}</main>
         <Footer
           logo={data.image} 
           siteTitle={data.site.siteMetadata.title} 
           menu={data.site.siteMetadata.footerLinks} 
         />
-      </>
+      </VisitorContext>
     </ThemeProvider>
   )
 }
