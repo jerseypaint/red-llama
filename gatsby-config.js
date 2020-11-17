@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         name:'what we do',
-        link:'/about'
+        link:'/services'
       }
     ]
   },

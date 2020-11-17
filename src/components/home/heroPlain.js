@@ -3,18 +3,22 @@ import styled from "styled-components"
 
 import { Link } from "gatsby"
 import theme from "../../styles/theme"
-
+import media from "../../styles/media"
 
 const Hero = styled.div`
   position: relative;
-
+  padding: 0 1rem;
+  
   h1 {
     color: ${theme.brand};
+    font-size: 4rem;
   }
+  ${media.tablet`
+    h1 {
+      font-size: 7rem;
+    }
+  `}
 
-  h1 {
-    font-size: 7rem;
-  }
 `
 
 const HeroContainer = styled.div`

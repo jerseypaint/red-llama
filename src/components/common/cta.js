@@ -9,7 +9,7 @@ import {StyledLink} from "../common/styledLink"
 const Container = styled.div`
     margin: 0 auto;
     max-width: 1200px;
-    padding-bottom: 4rem;
+    padding: 0 0 4rem 1rem;
     
      a {
         font-size: 4rem;

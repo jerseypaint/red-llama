@@ -49,7 +49,7 @@ const Layout = props => {
         <Header siteTitle={data.site.siteMetadata.title} />
           <main>{props.children}</main>
         <Footer
-          logo={data.image} 
+          logo={data.image.childImageSharp.fluid} 
           siteTitle={data.site.siteMetadata.title} 
           menu={data.site.siteMetadata.footerLinks} 
         />

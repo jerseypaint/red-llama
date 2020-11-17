@@ -15,14 +15,16 @@ const SingleProject = styled.div`
 
 const Info = styled.div`
     z-index: 1;
+    padding: 0 1rem;
 
     p {
         margin-top: 1rem;
     }
 
-    ${media.tablet`
+    ${media.desktop`
         display: flex;
         align-items: flex-end;
+        padding: 0;
     `}
 `
 
@@ -31,9 +33,16 @@ const Title = styled.div`
     z-index: 2;
 
     h3 {
-        font-size: 6.875rem;
+        font-size: 3.875rem;
         margin: 0;
     }
+    ${media.desktop`
+        max-width: 60%;
+        h3 {
+            font-size: 6.875rem;
+            margin: 0;
+        }
+    `}
 `
 
 const FeaturedImage = styled.div`
