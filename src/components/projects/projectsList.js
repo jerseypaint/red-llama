@@ -11,6 +11,10 @@ const ProjectContainer = styled.div`
 `
 const SingleProject = styled.div`
     margin: 100px 0;
+
+    ${media.desktop`
+    
+    `}
 `
 
 const Info = styled.div`
@@ -73,6 +77,15 @@ const ImageLink = styled(Link)`
     }
 `
 
+const MobileLinkContainer = styled.div`
+    text-align: center;
+    margin-top: 1rem;
+
+    ${media.desktop`
+        display: none;
+      `}
+`
+
 const ProjectsList = (props) => {
         return (
         <div>
@@ -93,6 +106,9 @@ const ProjectsList = (props) => {
                     <FeaturedImage>
                         <ImageLink to={project.node.frontmatter.path}><Image fluid={{...project.node.frontmatter.featuredImage.childImageSharp.fluid, aspectRatio: 16 / 9}} /></ImageLink>
                     </FeaturedImage>
+                        <MobileLinkContainer>
+                            <Link to={project.node.frontmatter.path}>View {project.node.frontmatter.title}</Link>
+                        </MobileLinkContainer>
                 </SingleProject>
             ))}
         </ProjectContainer>
