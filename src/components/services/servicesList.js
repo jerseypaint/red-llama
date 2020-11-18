@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
-import theme from "../../styles/theme"
+import ScrollAnimation from 'react-animate-on-scroll'
+
 import Section from "../common/section"
-import { GridContainer } from "../common/gridContainer"
 import media from "../../styles/media"
 
 const FlexGrid = styled.div`
@@ -40,8 +40,10 @@ export const ServicesList = ({services}) => {
             <FlexGrid>
                 {services.map(service => (        
                     <ServiceItem>
-                        <h3>{service.title}</h3>
-                        <p>{service.description}</p>
+                        <ScrollAnimation animateIn="fadeInUp" animateOnce={true}>
+                            <h3>{service.title}</h3>
+                            <p>{service.description}</p>
+                        </ScrollAnimation>
                     </ServiceItem>
                 ))}
             </FlexGrid>

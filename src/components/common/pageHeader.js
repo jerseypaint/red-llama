@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import { css } from "styled-components"
+import ScrollAnimation from 'react-animate-on-scroll'
+
 import Img from "gatsby-image"
 import media from "../../styles/media"
 
@@ -26,9 +27,11 @@ export const PageHeader = props => {
   return (
     <Section>
       <Container>
-        {props.image && <Img fluid={props.image} />}
-        <h1>{props.title}</h1>
-        {props.subtitle && <p>{props.subtitle}</p>}
+      <ScrollAnimation animateIn="fadeIn" animateOnce={true} duration={1.6}>
+          {props.image && <Img fluid={props.image} />}
+          <h1>{props.title}</h1>
+          {props.subtitle && <p>{props.subtitle}</p>}
+        </ScrollAnimation>
       </Container>
     </Section>
   )

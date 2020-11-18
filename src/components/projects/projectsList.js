@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react"
+import React from "react"
 import styled from "styled-components"
-import { css } from "styled-components"
 import Image from "gatsby-image"
 import { Link } from "gatsby"
+import ScrollAnimation from 'react-animate-on-scroll'
 import media from "../../styles/media"
 
 const ProjectContainer = styled.div`
@@ -91,6 +91,7 @@ const ProjectsList = (props) => {
         <div>
         <ProjectContainer >
             {props.projects.map(project => (
+               <ScrollAnimation animateIn="fadeInUp" animateOnce={true}>
                 <SingleProject>
                     <Info>
                         <Title>
@@ -110,6 +111,7 @@ const ProjectsList = (props) => {
                             <Link to={project.node.frontmatter.path}>View {project.node.frontmatter.title}</Link>
                         </MobileLinkContainer>
                 </SingleProject>
+                </ScrollAnimation>
             ))}
         </ProjectContainer>
         </div>

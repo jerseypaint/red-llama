@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
+import ScrollAnimation from 'react-animate-on-scroll'
 
 import Layout from "../components/common/layout"
 import SEO from "../components/common/seo"
@@ -9,7 +10,7 @@ import Section from "../components/common/section"
 
 const Container = styled.div`
   max-width: 600px;
-  margin: 0 auto;
+  margin: -100px auto 0;
 
   .hidden {
     display: none;
@@ -54,9 +55,10 @@ const Container = styled.div`
 const ContactPage = ({ data }) => (
   <Layout>
     <SEO title="Contact Us" />
-    <PageHeader title={data.contactJson.title} />
+    <PageHeader title={data.contactJson.title} subtitle={data.contactJson.description} />
     <Section>
       <Container>
+      <ScrollAnimation animateIn="fadeInUp" animateOnce={true}>
         <form
           name="contact"
           method="POST"
@@ -88,6 +90,7 @@ const ContactPage = ({ data }) => (
           </div>
           <button type="submit">Send</button>
         </form>
+        </ScrollAnimation>
       </Container>
     </Section>
   </Layout>
